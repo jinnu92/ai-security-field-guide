@@ -1,3 +1,5 @@
+# ASI04: Agentic Supply Chain Compromise
+
 ## ASI04: Agentic Supply Chain Compromise
 
 ### Why This Entry Exists
@@ -8,7 +10,7 @@ Agents have all of those same risks. But agents also have an entirely new catego
 
 This entry covers the attacks and defences specific to the **agentic supply chain**: the broader, more dynamic, and harder-to-audit dependency graph that emerges the moment you give an LLM the ability to act.
 
-**See also:** LLM03 Supply Chain Vulnerabilities, MCP02 Supply Chain Compromise
+**See also:** [LLM03 Supply Chain Vulnerabilities](../part2-llm/llm03-supply-chain.md), [MCP02 Supply Chain Compromise](../part4-mcp/mcp02-supply-chain-compromise.md)
 
 ---
 
@@ -337,4 +339,4 @@ Rug pull attacks exploit trust built over months to deliver a single malicious u
 
 Defence requires treating every agent dependency with the same suspicion you apply to user input: pin versions, verify integrity, sanitize outputs, monitor behaviour, and enforce least privilege per component.
 
-**See also:** LLM03 Supply Chain Vulnerabilities, MCP02 Supply Chain Compromise
+**See also:** [LLM03 Supply Chain Vulnerabilities](../part2-llm/llm03-supply-chain.md), [MCP02 Supply Chain Compromise](../part4-mcp/mcp02-supply-chain-compromise.md)

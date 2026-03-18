@@ -1,3 +1,5 @@
+# MCP06: Shadow MCP Servers
+
 ## MCP06 — Shadow MCP Servers
 
 ### What Is a Shadow MCP Server?
@@ -453,5 +455,5 @@ The attack is particularly effective because developers routinely test against p
 
 ### See Also
 
-- **MCP01 Tool Poisoning** — Shadow servers use tool description poisoning to direct LLM behavior toward malicious tools
-- **MCP02 Supply Chain Compromise** — Shadow servers are often delivered through compromised or typosquatted packages; the distinction is that supply chain attacks replace the server while shadow attacks add a parallel one
+- **[MCP01 Tool Poisoning](mcp01-tool-poisoning.md)** — Shadow servers use tool description poisoning to direct LLM behavior toward malicious tools
+- **[MCP02 Supply Chain Compromise](mcp02-supply-chain-compromise.md)** — Shadow servers are often delivered through compromised or typosquatted packages; the distinction is that supply chain attacks replace the server while shadow attacks add a parallel one

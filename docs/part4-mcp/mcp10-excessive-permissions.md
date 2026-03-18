@@ -1,3 +1,5 @@
+# MCP10: Excessive Permissions
+
 ## MCP10 — Excessive Permissions
 
 ### Why This Entry Matters
@@ -694,12 +696,12 @@ ways you did not intend.
 
 ### See Also
 
-- **LLM06 Excessive Agency** — The broader problem of AI
+- **[LLM06 Excessive Agency](../part2-llm/llm06-excessive-agency.md)** — The broader problem of AI
   systems with more tools and autonomy than they need;
   MCP10 is the MCP-specific manifestation
-- **ASI03 Identity and Privilege Abuse** — How agents
+- **[ASI03 Identity and Privilege Abuse](../part3-agentic/asi03-identity-privilege-abuse.md)** — How agents
   inherit and amplify the permissions of the identities
   they authenticate as
-- **MCP04 Insecure Auth** — How weak authentication in MCP
+- **[MCP04 Insecure Auth](mcp04-insecure-auth.md)** — How weak authentication in MCP
   servers compounds the damage when permissions are
   excessive

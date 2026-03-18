@@ -655,7 +655,4 @@ blindly propagate an attack.
 
 ---
 
-**See also:** LLM01 — Prompt Injection (Part 2), ASI04 —
-Agentic Supply Chain (Part 3), MCP01 — Tool Poisoning
-(Part 4), MCP02 — Supply Chain Compromise (Part 4),
-Part 8 — Framework Mapping
+**See also:** [LLM01 — Prompt Injection](../part2-llm/llm01-prompt-injection.md) (Part 2), [ASI04 — Agentic Supply Chain](../part3-agentic/asi04-agentic-supply-chain.md) (Part 3), [MCP01 — Tool Poisoning](../part4-mcp/mcp01-tool-poisoning.md) (Part 4), [MCP02 — Supply Chain Compromise](../part4-mcp/mcp02-supply-chain-compromise.md) (Part 4), [Part 8 — Framework Mapping](../part8-mapping/framework-comparison.md)

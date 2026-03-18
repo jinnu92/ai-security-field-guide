@@ -1,3 +1,5 @@
+# ASI09: Uncontrolled Autonomous Action
+
 ## ASI09 — Uncontrolled Autonomous Action
 
 ### Why Autonomous Agents Need a Leash
@@ -266,4 +268,4 @@ Uncontrolled autonomous action is not a single vulnerability — it is a categor
 
 The question is never "can this agent do the right thing?" The question is "what happens when this agent does the wrong thing, and how fast can we stop it?"
 
-**See also:** LLM06 Excessive Agency, ASI01 Agent Goal Hijack
+**See also:** [LLM06 Excessive Agency](../part2-llm/llm06-excessive-agency.md), [ASI01 Agent Goal Hijack](asi01-agent-goal-hijack.md)

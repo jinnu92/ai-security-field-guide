@@ -1,3 +1,5 @@
+# Chapter 3: What Is MCP?
+
 ## Chapter 3: What Is MCP?
 
 ### The Short Version
@@ -21,6 +23,20 @@ This created two problems:
 MCP solves both problems by defining a standard protocol. A tool provider builds one MCP server, and it works with any MCP-compatible host. A developer integrates MCP client support once, and their application can use any MCP server.
 
 The analogy is USB. Before USB, every peripheral device had its own connector and driver. USB provided one standard that worked for all devices. MCP aims to be the USB of AI tool connectivity.
+
+### The Shared Responsibility Model for MCP Security
+
+Securing an MCP-enabled application is not the job of a single party. Because MCP is a protocol connecting different systems, security responsibilities are distributed across the ecosystem.
+
+| Stakeholder | Security Responsibility |
+|---|---|
+| **MCP Server Provider** | Building secure tools, validating inputs, sanitizing outputs, and providing a clean, unpoisoned manifest. |
+| **App Developer (Host)** | Pinning manifests, implementing namespace isolation, enforcing least privilege, and filtering tool results. |
+| **LLM Provider** | Improving the model's ability to distinguish between developer instructions and untrusted data (Instruction Hierarchy). |
+| **End User** | Reviewing tool calls (when possible) and being cautious about which MCP servers they connect to their private data. |
+
+!!! info "The 'Weakest Link' Principle"
+    In MCP, the system is only as secure as the most permissive tool on the most vulnerable server. A single "read_file" tool without path validation can compromise the entire host machine, regardless of how secure the other connected servers are.
 
 ### How MCP Works: The Four Primitives
 

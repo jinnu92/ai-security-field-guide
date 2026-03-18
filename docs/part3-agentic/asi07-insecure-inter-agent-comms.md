@@ -1,3 +1,5 @@
+# ASI07: Insecure Inter-Agent Communication
+
 ## ASI07 — Insecure Inter-Agent Communication
 
 ### Why Multi-Agent Communication Is a Security Boundary
@@ -266,6 +268,6 @@ Six agents. One injected support ticket. No authentication, no validation, no tr
 
 ### See Also
 
-- **ASI01 Agent Goal Hijack** — The initial compromise technique that enables inter-agent attacks
-- **Part 5 Multi-Agent Attack Chains** — Extended scenarios showing cascading failures across agent swarms
-- **LLM01 Prompt Injection** — The foundational injection technique that inter-agent attacks build upon
+- **[ASI01 Agent Goal Hijack](asi01-agent-goal-hijack.md)** — The initial compromise technique that enables inter-agent attacks
+- **[Part 5 Multi-Agent Attack Chains](../part5-patterns/multi-agent-attack-chains.md)** — Extended scenarios showing cascading failures across agent swarms
+- **[LLM01 Prompt Injection](../part2-llm/llm01-prompt-injection.md)** — The foundational injection technique that inter-agent attacks build upon

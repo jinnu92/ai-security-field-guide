@@ -1,3 +1,5 @@
+# LLM01: Prompt Injection
+
 ## LLM01 — Prompt Injection
 
 ### Why This Is the Number One Risk
@@ -279,4 +281,4 @@ Use this checklist to assess whether your LLM application is vulnerable to promp
 - **[LLM06 — Excessive Agency](llm06-excessive-agency.md)** — The damage from a successful prompt injection scales with the permissions the LLM has. Reducing agency reduces the blast radius.
 - **[LLM07 — System Prompt Leakage](llm07-system-prompt-leakage.md)** — One of the most common goals of direct prompt injection is to extract the system prompt.
 - **[Part 3: ASI01 — Agent Goal Hijack](../part3-agentic/asi01-agent-goal-hijack.md)** — Prompt injection against an agent is called goal hijacking and has amplified consequences due to the agent's autonomy.
-- **[Part 5 — Cross-Cutting Attack Patterns](../part5/cross-cutting-attacks.md)** — How prompt injection chains with other vulnerabilities in multi-layer attacks.
+- **[Part 5 — Attack Patterns](../part5-patterns/indirect-prompt-injection.md)** — How prompt injection chains with other vulnerabilities in multi-layer attacks.

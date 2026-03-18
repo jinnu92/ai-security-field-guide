@@ -1,3 +1,5 @@
+# LLM07: System Prompt Leakage
+
 ## LLM07 — System Prompt Leakage
 
 ### What This Entry Covers

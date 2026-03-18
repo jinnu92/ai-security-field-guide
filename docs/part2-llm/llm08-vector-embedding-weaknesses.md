@@ -1,3 +1,5 @@
+# LLM08: Vector and Embedding Weaknesses
+
 ## LLM08: Vector and Embedding Weaknesses
 
 ### Why This Entry Matters
@@ -228,5 +230,5 @@ The embedding model itself adds another layer of risk. Because embeddings compre
 
 ### See Also
 
-- **LLM04: Data and Model Poisoning** — Document poisoning in vector databases is a specific form of data poisoning. See LLM04 for broader poisoning techniques and defences.
-- **Part 5: Indirect Prompt Injection** — The poisoned document attack described here is a delivery mechanism for indirect prompt injection. Part 5 covers the injection techniques in depth.
+- **[LLM04: Data and Model Poisoning](llm04-data-model-poisoning.md)** — Document poisoning in vector databases is a specific form of data poisoning. See LLM04 for broader poisoning techniques and defences.
+- **[Part 5: Indirect Prompt Injection](../part5-patterns/indirect-prompt-injection.md)** — The poisoned document attack described here is a delivery mechanism for indirect prompt injection. Part 5 covers the injection techniques in depth.

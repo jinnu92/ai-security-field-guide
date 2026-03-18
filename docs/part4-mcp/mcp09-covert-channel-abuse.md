@@ -1,3 +1,5 @@
+# MCP09: Covert Channel Abuse
+
 ## MCP09 — Covert Channel Abuse
 
 ### Why This Entry Matters
@@ -414,7 +416,7 @@ Key indicators in this log entry:
 
 ### See Also
 
-- **LLM02 Sensitive Information Disclosure** — The underlying data exposure that covert channels exploit
-- **MCP05 Insufficient Logging** — Without comprehensive MCP logging, covert channels are invisible
-- **LLM01 Prompt Injection** — The most common method for triggering covert channel exfiltration
-- **LLM06 Excessive Agency** — Agents with too many tool permissions create more covert channel surface area
+- **[LLM02 Sensitive Information Disclosure](../part2-llm/llm02-sensitive-information-disclosure.md)** — The underlying data exposure that covert channels exploit
+- **[MCP05 Insufficient Logging](mcp05-insufficient-logging.md)** — Without comprehensive MCP logging, covert channels are invisible
+- **[LLM01 Prompt Injection](../part2-llm/llm01-prompt-injection.md)** — The most common method for triggering covert channel exfiltration
+- **[LLM06 Excessive Agency](../part2-llm/llm06-excessive-agency.md)** — Agents with too many tool permissions create more covert channel surface area

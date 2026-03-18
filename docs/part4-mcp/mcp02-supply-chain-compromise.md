@@ -1,3 +1,5 @@
+# MCP02: Supply Chain Compromise
+
 ## MCP02 — Supply Chain Compromise
 
 ### Why This Entry Matters
@@ -8,7 +10,7 @@ When Priya, a developer at FinanceApp Inc., adds an MCP server to her AI agent, 
 
 The MCP ecosystem is young. Package registries have no MCP-specific verification. There is no signing standard for MCP server manifests. Most developers install MCP servers the same way they install any npm package: `npm install package-name`, and then point their agent at it. This is the supply chain risk surface, and Marcus knows it well.
 
-**See also:** [LLM03 — Supply Chain Vulnerabilities](../part2-llm/llm03-supply-chain.md), ASI04 — Agentic Supply Chain, [MCP01 — Tool Poisoning](mcp01-tool-poisoning.md)
+**See also:** [LLM03 — Supply Chain Vulnerabilities](../part2-llm/llm03-supply-chain.md), [ASI04 — Agentic Supply Chain](../part3-agentic/asi04-agentic-supply-chain.md), [MCP01 — Tool Poisoning](mcp01-tool-poisoning.md)
 
 ### Severity and Stakeholders
 
@@ -400,4 +402,4 @@ Arjun, security engineer at CloudCorp, puts it bluntly: "Every MCP server you in
 | Dependency confusion | Publish high-version public package matching internal name | Scope internal packages to private registry only |
 | Manifest manipulation | Tool descriptions contain LLM-directed instructions | Audit `tools/list` response, maintain tool allowlists |
 
-**See also:** [LLM03 — Supply Chain Vulnerabilities](../part2-llm/llm03-supply-chain.md), ASI04 — Agentic Supply Chain, [MCP01 — Tool Poisoning](mcp01-tool-poisoning.md)
+**See also:** [LLM03 — Supply Chain Vulnerabilities](../part2-llm/llm03-supply-chain.md), [ASI04 — Agentic Supply Chain](../part3-agentic/asi04-agentic-supply-chain.md), [MCP01 — Tool Poisoning](mcp01-tool-poisoning.md)

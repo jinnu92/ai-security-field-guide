@@ -1,3 +1,5 @@
+# Playbook: Securing an AI Agent Deployment
+
 ## Playbook: Securing an AI Agent Deployment
 
 ### Why This Playbook Exists
@@ -25,8 +27,8 @@ Every recommendation here is something Arjun, security
 engineer at CloudCorp, has either implemented or wished he
 had implemented before an incident taught him the hard way.
 
-**See also:** Part 3 — OWASP Agentic Top 10,
-Part 5 — Multi-Agent Attack Chains
+**See also:** [Part 3 — OWASP Agentic Top 10](../part3-agentic/asi01-agent-goal-hijack.md),
+[Part 5 — Multi-Agent Attack Chains](../part5-patterns/multi-agent-attack-chains.md)
 
 ---
 
@@ -41,6 +43,9 @@ has three layers:
 | **External input** | Adversarial content in data the agent reads | Marcus plants a prompt injection in a web page the agent fetches |
 | **Internal drift** | The agent misinterprets its goal or hallucinates actions | The agent decides "delete old files" means production database rows |
 | **Compromised peer** | Another agent or service in the pipeline is malicious | A plugin agent from an untrusted registry exfiltrates data through its tool calls |
+
+!!! danger "The Attacker's Perspective"
+    Marcus often starts by planting a prompt injection in a web page the agent is likely to fetch. This simple step can compromise the entire reasoning chain.
 
 Every control in this playbook addresses at least one of
 these three layers. If a control seems excessive for your
@@ -125,10 +130,12 @@ suggestion.
 > **Defender's Note**
 >
 > Prompt-level restrictions ("Do not use the delete tool")
-> are trivially bypassed by prompt injection. Marcus knows
-> this. Runtime enforcement is the only control that holds
-> up under adversarial conditions. Treat prompt-level
-> instructions as documentation, not security controls.
+> are trivially bypassed by prompt injection.
+>
+> !!! danger "The Attacker's Perspective"
+>     Marcus knows this. Runtime enforcement is the only control that holds
+>     up under adversarial conditions. Treat prompt-level
+>     instructions as documentation, not security controls.
 
 ---
 
@@ -481,10 +488,11 @@ agent is compromised — through prompt injection, a
 poisoned tool, or a malicious plugin — it can use its
 trusted communication channel to compromise the others.
 
-This is exactly how Marcus attacks multi-agent systems.
-He does not need to compromise the most privileged agent
-directly. He compromises the least protected one and
-pivots through the trust chain.
+!!! danger "The Attacker's Perspective"
+    This is exactly how Marcus attacks multi-agent systems.
+    He does not need to compromise the most privileged agent
+    directly. He compromises the least protected one and
+    pivots through the trust chain.
 
 #### Trust Boundary Rules
 
@@ -585,11 +593,12 @@ flowchart TD
     style X fill:#922B21,color:#fff
 ```
 
-In this architecture, the agent has permanent access to
-every tool. When it fetches a URL containing Marcus's
-prompt injection, it has the permissions to act on the
-injected instructions immediately. There is no checkpoint,
-no scope restriction, no circuit breaker.
+!!! danger "The Attacker's Perspective"
+    In this architecture, the agent has permanent access to
+    every tool. When it fetches a URL containing Marcus's
+    prompt injection, it has the permissions to act on the
+    injected instructions immediately. There is no checkpoint,
+    no scope restriction, no circuit breaker.
 
 #### After: Layered Defenses
 
@@ -671,5 +680,5 @@ an agent without it and learned why it mattered.
 
 Build the walls before you let the agent loose.
 
-**See also:** Part 3 — OWASP Agentic Top 10,
-Part 5 — Multi-Agent Attack Chains
+**See also:** [Part 3 — OWASP Agentic Top 10](../part3-agentic/asi01-agent-goal-hijack.md),
+[Part 5 — Multi-Agent Attack Chains](../part5-patterns/multi-agent-attack-chains.md)

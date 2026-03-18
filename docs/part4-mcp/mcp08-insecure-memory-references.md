@@ -1,3 +1,5 @@
+# MCP08: Insecure Memory and Resource References
+
 ## MCP08 — Insecure Memory and Resource References
 
 ### Why This Matters
@@ -402,6 +404,6 @@ This is the bridge between MCP08 and ASI06 (Memory and Context Poisoning). Insec
 
 ### See Also
 
-- **ASI06 Memory and Context Poisoning** — What happens when an attacker can write to the memory resources they discover through insecure references
-- **MCP04 Insecure Auth** — The authentication-without-authorization pattern that enables this entire class of attack
-- **LLM02 Sensitive Information Disclosure** — The broader category of sensitive data exposure that MCP08 represents at the protocol layer
+- **[ASI06 Memory and Context Poisoning](../part3-agentic/asi06-memory-context-poisoning.md)** — What happens when an attacker can write to the memory resources they discover through insecure references
+- **[MCP04 Insecure Auth](mcp04-insecure-auth.md)** — The authentication-without-authorization pattern that enables this entire class of attack
+- **[LLM02 Sensitive Information Disclosure](../part2-llm/llm02-sensitive-information-disclosure.md)** — The broader category of sensitive data exposure that MCP08 represents at the protocol layer

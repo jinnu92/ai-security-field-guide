@@ -1,3 +1,5 @@
+# LLM03: Supply Chain Vulnerabilities
+
 ## LLM03 — Supply Chain Vulnerabilities
 
 ### Why This Entry Matters
@@ -199,5 +201,5 @@ Arjun puts it this way: "In traditional security, we worry about someone changin
 
 ### See Also
 
-- **LLM04 — Data and Model Poisoning** — Covers the specific techniques attackers use to poison training data and model behavior, which is one of the primary supply chain attack vectors discussed in this chapter.
-- **MCP02 — Supply Chain Compromise** — Covers supply chain attacks specific to the Model Context Protocol ecosystem, including compromised MCP servers and tool registries.
+- **[LLM04 — Data and Model Poisoning](llm04-data-model-poisoning.md)** — Covers the specific techniques attackers use to poison training data and model behavior, which is one of the primary supply chain attack vectors discussed in this chapter.
+- **[MCP02 — Supply Chain Compromise](../part4-mcp/mcp02-supply-chain-compromise.md)** — Covers supply chain attacks specific to the Model Context Protocol ecosystem, including compromised MCP servers and tool registries.

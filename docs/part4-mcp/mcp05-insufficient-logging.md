@@ -1,3 +1,5 @@
+# MCP05: Insufficient Logging and Monitoring
+
 ## MCP05 — Insufficient Logging and Monitoring
 
 ### Why This Matters
@@ -556,9 +558,9 @@ Most APM agents have no MCP instrumentation.
 
 - [MCP04 — Insecure Authentication and Authorization](mcp04-insecure-auth.md)
   — Without logging, authentication bypasses go undetected
-- [Part 6 — MCP Security Playbook](../part6-tic-playbook/mcp-playbook.md)
+- [Part 6 — MCP Security Playbook](../part6-playbooks/playbook-mcp.md)
   — Step-by-step guide for hardening MCP deployments,
   including logging requirements
-- [LLM06 — Sensitive Information Disclosure](../part2-owasp-llm/llm06-sensitive-info.md)
+- [LLM06 — Sensitive Information Disclosure](../part2-llm/llm02-sensitive-information-disclosure.md)
   — Data leaks through MCP tools are invisible without
   audit trails

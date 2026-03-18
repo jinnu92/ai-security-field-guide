@@ -1,3 +1,5 @@
+# ASI10: Rogue Agents
+
 ## ASI10 — Rogue Agents
 
 ### What Is a Rogue Agent?
@@ -261,6 +263,6 @@ When Arjun, the security engineer at CloudCorp, confirms that an agent has gone 
 
 ### See Also
 
-- **ASI01 Agent Goal Hijack** — The initial technique used to redirect an agent's objective, which is often the first step in creating a rogue agent.
-- **ASI06 Memory and Context Poisoning** — The persistence mechanism that allows rogue behavior to survive across sessions.
-- **ASI09 Uncontrolled Autonomous Action** — What happens when a rogue agent has broad tool access without adequate guardrails.
+- **[ASI01 Agent Goal Hijack](asi01-agent-goal-hijack.md)** — The initial technique used to redirect an agent's objective, which is often the first step in creating a rogue agent.
+- **[ASI06 Memory and Context Poisoning](asi06-memory-context-poisoning.md)** — The persistence mechanism that allows rogue behavior to survive across sessions.
+- **[ASI09 Uncontrolled Autonomous Action](asi09-uncontrolled-autonomous-action.md)** — What happens when a rogue agent has broad tool access without adequate guardrails.

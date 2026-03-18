@@ -10,7 +10,7 @@ When an agent executes code that an LLM produced, there is no human review step 
 
 RCE is the single most severe vulnerability class in traditional security. It means the attacker can run anything: exfiltrate data, install backdoors, move laterally through your network, or destroy everything. When we hand code execution capabilities to an LLM, we are handing the attacker a potential RCE primitive — one that bypasses every traditional defence because the "exploit" looks like normal agent behaviour.
 
-**See also:** LLM05 Improper Output Handling, MCP03 Command Injection
+**See also:** [LLM05 Improper Output Handling](../part2-llm/llm05-improper-output-handling.md), [MCP03 Command Injection](../part4-mcp/mcp03-command-injection.md)
 
 ---
 
@@ -370,6 +370,6 @@ def sanitize_data_cell(value: str) -> str:
 
 ### See Also
 
-- **LLM05 — Improper Output Handling**: The general case of trusting LLM output without sanitization
-- **MCP03 — Command Injection**: When tool parameters rather than generated code become the injection vector
-- **ASI01 — Excessive Agency**: Why agents should not have code execution capabilities unless absolutely necessary
+- **[LLM05 — Improper Output Handling](../part2-llm/llm05-improper-output-handling.md)**: The general case of trusting LLM output without sanitization
+- **[MCP03 — Command Injection](../part4-mcp/mcp03-command-injection.md)**: When tool parameters rather than generated code become the injection vector
+- **[ASI01 — Agent Goal Hijack](asi01-agent-goal-hijack.md)**: Why agents should not have code execution capabilities unless absolutely necessary

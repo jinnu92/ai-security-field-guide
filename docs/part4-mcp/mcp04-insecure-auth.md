@@ -1,3 +1,5 @@
+# MCP04: Insecure Authentication and Authorization
+
 ## MCP04 — Insecure Authentication and Authorization
 
 ### Why Authentication in MCP Is Uniquely Hard
@@ -418,6 +420,6 @@ Arjun, security engineer at CloudCorp, developed this phased approach after disc
 
 ### See Also
 
-- **ASI03 — Identity and Privilege Abuse**: Covers the broader problem of identity confusion in agentic systems, including delegation chains and privilege escalation patterns that interact directly with MCP authentication failures.
-- **MCP10 — Excessive Permissions**: Addresses the authorization side in more depth — what happens when authenticated users have too many permissions, and how to implement least-privilege policies for MCP tools.
-- **LLM06 — Excessive Agency**: Explores the upstream risk of LLMs taking actions beyond what users intended, which is amplified when MCP servers lack authorization checks.
+- **[ASI03 — Identity and Privilege Abuse](../part3-agentic/asi03-identity-privilege-abuse.md)**: Covers the broader problem of identity confusion in agentic systems, including delegation chains and privilege escalation patterns that interact directly with MCP authentication failures.
+- **[MCP10 — Excessive Permissions](mcp10-excessive-permissions.md)**: Addresses the authorization side in more depth — what happens when authenticated users have too many permissions, and how to implement least-privilege policies for MCP tools.
+- **[LLM06 — Excessive Agency](../part2-llm/llm06-excessive-agency.md)**: Explores the upstream risk of LLMs taking actions beyond what users intended, which is amplified when MCP servers lack authorization checks.

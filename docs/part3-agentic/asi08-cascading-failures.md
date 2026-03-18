@@ -1,3 +1,5 @@
+# ASI08: Cascading Failures
+
 ## ASI08 — Cascading Failures
 
 ### When One Domino Topples the Whole Line
@@ -343,5 +345,5 @@ Key architectural decisions:
 
 ### See Also
 
-- **LLM10 — Unbounded Consumption**: Cascading failures are a primary cause of unbounded consumption. Retry storms and error amplification directly consume tokens and compute at rates far beyond normal operation.
-- **ASI07 — Insecure Inter-Agent Communication**: When the communication channel between agents lacks validation and structure, errors propagate more easily and transform into data corruption along the way.
+- **[LLM10 — Unbounded Consumption](../part2-llm/llm10-unbounded-consumption.md)**: Cascading failures are a primary cause of unbounded consumption. Retry storms and error amplification directly consume tokens and compute at rates far beyond normal operation.
+- **[ASI07 — Insecure Inter-Agent Communication](asi07-insecure-inter-agent-comms.md)**: When the communication channel between agents lacks validation and structure, errors propagate more easily and transform into data corruption along the way.

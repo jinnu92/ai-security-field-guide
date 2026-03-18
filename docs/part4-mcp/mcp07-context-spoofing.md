@@ -1,3 +1,5 @@
+# MCP07: Context Spoofing
+
 ## MCP07 — Context Spoofing
 
 ### Why This Matters
@@ -421,6 +423,6 @@ The common thread is that the consumer of information (the LLM, the browser, the
 
 ### See Also
 
-- **ASI06 Memory and Context Poisoning** — Covers long-term poisoning of agent memory stores, which is the persistent cousin of context spoofing.
-- **MCP01 Tool Poisoning** — Covers malicious tool definitions (descriptions, schemas) rather than malicious tool results.
-- **LLM01 Prompt Injection** — The foundational attack that context spoofing builds upon. Context spoofing is prompt injection delivered through the infrastructure layer rather than the user input layer.
+- **[ASI06 Memory and Context Poisoning](../part3-agentic/asi06-memory-context-poisoning.md)** — Covers long-term poisoning of agent memory stores, which is the persistent cousin of context spoofing.
+- **[MCP01 Tool Poisoning](mcp01-tool-poisoning.md)** — Covers malicious tool definitions (descriptions, schemas) rather than malicious tool results.
+- **[LLM01 Prompt Injection](../part2-llm/llm01-prompt-injection.md)** — The foundational attack that context spoofing builds upon. Context spoofing is prompt injection delivered through the infrastructure layer rather than the user input layer.

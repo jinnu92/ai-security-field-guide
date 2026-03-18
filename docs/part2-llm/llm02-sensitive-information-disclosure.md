@@ -1,3 +1,5 @@
+# LLM02: Sensitive Information Disclosure
+
 ## LLM02 — Sensitive Information Disclosure
 
 ### Why This Entry Matters
@@ -111,7 +113,7 @@ flowchart TD
 
 **What actually happened:** The system prompt was treated as confidential, but it was placed inside the model's context window with no structural protection. A sufficiently creative prompt can convince the model to repeat it.
 
-See also: **LLM01 Prompt Injection**, **LLM07 System Prompt Leakage**
+See also: **[LLM01 Prompt Injection](llm01-prompt-injection.md)**, **[LLM07 System Prompt Leakage](llm07-system-prompt-leakage.md)**
 
 ---
 

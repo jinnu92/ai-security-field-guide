@@ -1,13 +1,13 @@
-# Environments
+# Virtual Environments
 .venv/
 venv/
 ENV/
 env/
 
-# MkDocs
+# Build Artifacts
 site/
 
-# OS-specific files
+# OS-Specific Files
 .DS_Store
 .DS_Store?
 ._*
@@ -16,12 +16,22 @@ site/
 ehthumbs.db
 Thumbs.db
 
-# Editors
+# Editors and IDEs
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# Local tools
+# Local Tools
 .claude/
 .gemini/
+
+# Personal Planning & Internal Docs
+outline.md
+claude.md
+
+# Log Files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

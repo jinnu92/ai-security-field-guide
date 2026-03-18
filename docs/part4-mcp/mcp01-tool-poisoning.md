@@ -1,3 +1,5 @@
+# MCP01: Tool Poisoning
+
 ## MCP01 — Tool Poisoning
 
 ### Why This Matters
@@ -359,4 +361,4 @@ Tool poisoning exploits the fundamental design of how LLM agents discover and us
 
 ---
 
-**See also:** [ASI01 Agent Goal Hijack](../part3-agentic/asi01-agent-goal-hijack.md), [LLM01 Prompt Injection](../part2-owasp/llm01-prompt-injection.md), [MCP02 Supply Chain Compromise](mcp02-supply-chain.md)
+**See also:** [ASI01 Agent Goal Hijack](../part3-agentic/asi01-agent-goal-hijack.md), [LLM01 Prompt Injection](../part2-llm/llm01-prompt-injection.md), [MCP02 Supply Chain Compromise](mcp02-supply-chain-compromise.md)

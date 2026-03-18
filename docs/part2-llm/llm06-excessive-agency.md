@@ -477,9 +477,9 @@ contained.
 
 ### See Also
 
-- **LLM01: Prompt Injection** — The attack that excessive
+- **[LLM01: Prompt Injection](llm01-prompt-injection.md)** — The attack that excessive
   agency amplifies most dangerously
-- **ASI09: Uncontrolled Autonomous Action** — The agentic
+- **[ASI09: Uncontrolled Autonomous Action](../part3-agentic/asi09-uncontrolled-autonomous-action.md)** — The agentic
   security perspective on runaway agent behavior
-- **MCP10: Excessive Permissions** — The same principle
+- **[MCP10: Excessive Permissions](../part4-mcp/mcp10-excessive-permissions.md)** — The same principle
   applied specifically to MCP tool servers

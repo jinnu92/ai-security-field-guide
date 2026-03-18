@@ -547,11 +547,11 @@ layer, not in the prompt.
 
 ### See Also
 
-- **LLM06 Excessive Agency** — reducing the number and
+- **[LLM06 Excessive Agency](../part2-llm/llm06-excessive-agency.md)** — reducing the number and
   scope of tools available to the agent
-- **MCP01 Tool Poisoning** — when the tools themselves
+- **[MCP01 Tool Poisoning](../part4-mcp/mcp01-tool-poisoning.md)** — when the tools themselves
   are compromised, rather than misused
-- **ASI01 Agent Prompt Injection** — the technique Marcus
+- **[ASI01 Agent Goal Hijack](asi01-agent-goal-hijack.md)** — the technique Marcus
   uses to make his request look legitimate
-- **ASI03 Excessive Autonomy** — when agents act without
+- **[ASI03 Identity and Privilege Abuse](asi03-identity-privilege-abuse.md)** — when agents act without
   sufficient human oversight

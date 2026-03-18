@@ -1,3 +1,5 @@
+# LLM09: Misinformation
+
 ## LLM09: Misinformation
 
 ### Why This Entry Matters
@@ -235,7 +237,7 @@ Defend against deliberately induced misinformation by securing the retrieval pip
 
 This control directly addresses the attack where Marcus uploaded a poisoned document. With proper access controls and document signing, his upload would either be rejected or flagged for review before entering the retrieval pipeline.
 
-See also: [LLM04 — Data and Model Poisoning](llm04-data-poisoning.md) for how training data manipulation amplifies misinformation risk.
+See also: [LLM04 — Data and Model Poisoning](llm04-data-model-poisoning.md) for how training data manipulation amplifies misinformation risk.
 
 ---
 
@@ -299,7 +301,7 @@ If three or more items are checked, your application has significant misinformat
 
 1. Hallucination is not a bug that will be patched in the next model version. It is a structural property of how LLMs generate text. Plan for it.
 
-2. Deliberately induced misinformation through context manipulation (poisoned RAG documents, manipulated embeddings) is an active attack vector, not a theoretical concern. See also: [LLM08 — Vector and Embedding Weaknesses](llm08-vector-embedding.md).
+2. Deliberately induced misinformation through context manipulation (poisoned RAG documents, manipulated embeddings) is an active attack vector, not a theoretical concern. See also: [LLM08 — Vector and Embedding Weaknesses](llm08-vector-embedding-weaknesses.md).
 
 3. The most dangerous misinformation is not obviously wrong. It is subtly wrong — a real case name with a fabricated ruling, a real drug name with incorrect dosage guidance, a real regulation with invented provisions.
 

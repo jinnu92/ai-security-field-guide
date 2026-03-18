@@ -1,3 +1,5 @@
+# Chapter 2: What Is an Agent?
+
 ## Chapter 2: What Is an Agent?
 
 ### The Short Version

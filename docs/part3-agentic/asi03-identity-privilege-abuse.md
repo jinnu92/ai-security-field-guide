@@ -1,3 +1,5 @@
+# ASI03: Identity and Privilege Abuse
+
 ## ASI03 — Identity and Privilege Abuse
 
 ### Why This Matters
@@ -197,5 +199,5 @@ Deploy a policy enforcement layer (a sidecar proxy or middleware) between the ag
 
 ### See Also
 
-- **LLM06 — Excessive Agency**: Covers agents having access to tools they should not have. ASI03 is about having the right tools but the wrong identity.
-- **MCP04 — Insecure Auth**: Covers authentication weaknesses in the MCP protocol layer, which can amplify identity abuse when agents use MCP servers.
+- **[LLM06 — Excessive Agency](../part2-llm/llm06-excessive-agency.md)**: Covers agents having access to tools they should not have. ASI03 is about having the right tools but the wrong identity.
+- **[MCP04 — Insecure Auth](../part4-mcp/mcp04-insecure-auth.md)**: Covers authentication weaknesses in the MCP protocol layer, which can amplify identity abuse when agents use MCP servers.

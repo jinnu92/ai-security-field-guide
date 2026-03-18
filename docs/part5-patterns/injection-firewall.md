@@ -1,3 +1,5 @@
+# Injection Firewalls: Cross-Cutting Defence Pattern
+
 ## Injection Firewalls — Cross-Cutting Defence Pattern
 
 ### What Is an Injection Firewall?
@@ -484,6 +486,6 @@ environment variables, including any API keys.
 
 ### See Also
 
-- **LLM01 — Prompt Injection** for the foundational attack that injection firewalls defend against
-- **Part 5 — Indirect Prompt Injection Defences** for additional mitigation strategies specific to retrieval and tool pipelines
-- **Part 6 — Playbooks** for step-by-step deployment guides including firewall configuration templates
+- **[LLM01 — Prompt Injection](../part2-llm/llm01-prompt-injection.md)** for the foundational attack that injection firewalls defend against
+- **[Part 5 — Indirect Prompt Injection](indirect-prompt-injection.md)** for additional mitigation strategies specific to retrieval and tool pipelines
+- **[Part 6 — Playbooks](../part6-playbooks/playbook-llm-app.md)** for step-by-step deployment guides including firewall configuration templates

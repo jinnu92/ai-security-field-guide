@@ -1,3 +1,5 @@
+# Multi-Agent Attack Chains: Cross-Cutting Attack Pattern
+
 ## Multi-Agent Attack Chains — Cross-Cutting Attack Pattern
 
 ### Why This Pattern Matters
@@ -22,8 +24,8 @@ This chapter maps out exactly how these multi-agent attack
 chains work, why trust delegation between agents is the
 weakest link, and what defenders can do about it.
 
-**See also:** ASI07 Insecure Inter-Agent Communication,
-ASI01 Agent Goal Hijack, ASI08 Cascading Failures
+**See also:** [ASI07 Insecure Inter-Agent Communication](../part3-agentic/asi07-insecure-inter-agent-comms.md),
+[ASI01 Agent Goal Hijack](../part3-agentic/asi01-agent-goal-hijack.md), [ASI08 Cascading Failures](../part3-agentic/asi08-cascading-failures.md)
 
 ---
 
@@ -627,7 +629,6 @@ flowchart TD
    level, and downstream agents must enforce trust-based
    access control.
 
-**See also:** ASI07 Insecure Inter-Agent Communication
-for protocol-level vulnerabilities, ASI01 Agent Goal
-Hijack for single-agent injection techniques,
-ASI08 Cascading Failures for systemic collapse patterns.
+**See also:** [ASI07 Insecure Inter-Agent Communication](../part3-agentic/asi07-insecure-inter-agent-comms.md)
+for protocol-level vulnerabilities, [ASI01 Agent Goal Hijack](../part3-agentic/asi01-agent-goal-hijack.md) for single-agent injection techniques,
+[ASI08 Cascading Failures](../part3-agentic/asi08-cascading-failures.md) for systemic collapse patterns.

@@ -1,3 +1,5 @@
+# Indirect Prompt Injection: The Cross-Cutting Attack Pattern
+
 ## Indirect Prompt Injection — The Cross-Cutting Attack Pattern
 
 ### Why This Chapter Exists
@@ -8,7 +10,7 @@ Direct prompt injection is a user attacking an LLM they are already talking to. 
 
 This chapter is a deep dive. We will walk through four complete attack stories — web fetch, email, RAG poisoning, and database record injection — map the full taxonomy of injection channels, and then build a layered defensive architecture from the ground up.
 
-**See also:** LLM01 Prompt Injection, LLM08 Vector and Embedding Weaknesses, Part 6 Playbooks
+**See also:** [LLM01 Prompt Injection](../part2-llm/llm01-prompt-injection.md), [LLM08 Vector and Embedding Weaknesses](../part2-llm/llm08-vector-embedding-weaknesses.md), [Part 6 Playbooks](../part6-playbooks/playbook-llm-app.md)
 
 ---
 
@@ -519,4 +521,4 @@ flowchart TD
 
 5. **Test with real payloads regularly.** Use the ten test cases in this chapter as a starting point. Run them every time you change your model, update your system prompt, or add a new data source. Indirect injection defences degrade over time as models and attack techniques evolve.
 
-**See also:** LLM01 Prompt Injection for direct injection techniques and defences, LLM08 Vector and Embedding Weaknesses for RAG-specific security, Part 6 Playbooks for complete implementation guides.
+**See also:** [LLM01 Prompt Injection](../part2-llm/llm01-prompt-injection.md) for direct injection techniques and defences, [LLM08 Vector and Embedding Weaknesses](../part2-llm/llm08-vector-embedding-weaknesses.md) for RAG-specific security, [Part 6 Playbooks](../part6-playbooks/playbook-llm-app.md) for complete implementation guides.

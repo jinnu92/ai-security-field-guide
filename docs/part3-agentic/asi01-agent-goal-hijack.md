@@ -1,3 +1,5 @@
+# ASI01: Agent Goal Hijack
+
 ## ASI01: Agent Goal Hijack
 
 ### What This Entry Covers
@@ -23,8 +25,7 @@ which covers threats unique to autonomous AI agents —
 systems that plan, use tools, and act across multiple
 steps without human approval at each stage.
 
-**See also:** LLM01 Prompt Injection, ASI06 Memory and
-Context Poisoning
+**See also:** [LLM01 Prompt Injection](../part2-llm/llm01-prompt-injection.md), [ASI06 Memory and Context Poisoning](asi06-memory-context-poisoning.md)
 
 ---
 
@@ -628,5 +629,4 @@ independent mechanisms simultaneously.
   enforcers that operate outside the LLM's decision
   layer.
 
-**See also:** LLM01 Prompt Injection, ASI06 Memory
-and Context Poisoning
+**See also:** [LLM01 Prompt Injection](../part2-llm/llm01-prompt-injection.md), [ASI06 Memory and Context Poisoning](asi06-memory-context-poisoning.md)

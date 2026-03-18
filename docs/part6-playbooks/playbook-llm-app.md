@@ -1,3 +1,5 @@
+# Playbook: Securing an LLM-Powered Application
+
 ## Playbook — Securing an LLM-Powered Application
 
 ### Who This Playbook Is For
@@ -636,7 +638,7 @@ Security is not a one-time deployment. Arjun schedules monthly reviews at CloudC
 
 ### See Also
 
-- **Part 2 — OWASP LLM Top 10:** Each entry describes the attack this playbook defends against. Start with LLM01 (Prompt Injection) and LLM05 (Improper Output Handling).
-- **Part 5 — Injection Firewalls:** Dedicated patterns for building and deploying prompt injection detection systems that go beyond regex matching.
-- **LLM07 — System Prompt Leakage:** Detailed attack techniques for extracting system prompts, and why the canary defence matters.
-- **LLM10 — Unbounded Consumption:** The cost and availability risks that rate limiting addresses.
+- **[Part 2 — OWASP LLM Top 10](../part2-llm/llm01-prompt-injection.md):** Each entry describes the attack this playbook defends against. Start with [LLM01 (Prompt Injection)](../part2-llm/llm01-prompt-injection.md) and [LLM05 (Improper Output Handling)](../part2-llm/llm05-improper-output-handling.md).
+- **[Part 5 — Injection Firewalls](../part5-patterns/injection-firewall.md):** Dedicated patterns for building and deploying prompt injection detection systems that go beyond regex matching.
+- **[LLM07 — System Prompt Leakage](../part2-llm/llm07-system-prompt-leakage.md):** Detailed attack techniques for extracting system prompts, and why the canary defence matters.
+- **[LLM10 — Unbounded Consumption](../part2-llm/llm10-unbounded-consumption.md):** The cost and availability risks that rate limiting addresses.

@@ -1,3 +1,5 @@
+# Red Team Checklist for LLM, Agent, and MCP Systems
+
 ## Red Team Checklist for LLM, Agent, and MCP Systems
 
 ### Why You Need a Structured Red Team Checklist
@@ -30,8 +32,8 @@ The goal is to give your red team a concrete starting
 point — not an exhaustive list, but a structured framework
 they can extend.
 
-**See also:** All OWASP entries in Parts 2-4,
-Part 5 Cross-Cutting Patterns
+**See also:** All OWASP entries in [Part 2](../part2-llm/llm01-prompt-injection.md)-[Part 4](../part4-mcp/mcp01-tool-poisoning.md),
+[Part 5 Cross-Cutting Patterns](../part5-patterns/indirect-prompt-injection.md)
 
 ---
 
@@ -380,7 +382,7 @@ security programme will have 100 or more, tailored to
 their specific architecture, threat model, and risk
 appetite.
 
-**See also:** Part 2 — OWASP LLM Top 10,
-Part 3 — OWASP Agentic Top 10,
-Part 4 — MCP Security,
-Part 5 — Cross-Cutting Patterns
+**See also:** [Part 2 — OWASP LLM Top 10](../part2-llm/llm01-prompt-injection.md),
+[Part 3 — OWASP Agentic Top 10](../part3-agentic/asi01-agent-goal-hijack.md),
+[Part 4 — MCP Security](../part4-mcp/mcp01-tool-poisoning.md),
+[Part 5 — Cross-Cutting Patterns](../part5-patterns/indirect-prompt-injection.md)

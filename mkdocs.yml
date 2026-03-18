@@ -48,15 +48,6 @@ extra_javascript:
 
 plugins:
   - search
-  - print-site:
-      add_to_navigation: true
-      print_page_title: "Print Entire Book"
-      add_print_site_banner: false
-      add_table_of_contents: true
-      toc_title: "Table of Contents"
-      toc_depth: 3
-      enumerate_headings: false
-      enumerate_figures: false
 
 markdown_extensions:
   - admonition
@@ -98,11 +89,11 @@ extra:
 nav:
   - Home: index.md
   - Glossary: glossary.md
-  - Part 1 — Foundations:
+  - Foundations:
     - What is an LLM?: part1/ch01-what-is-an-llm.md
     - What is an Agent?: part1/ch02-what-is-an-agent.md
     - What is MCP?: part1/ch03-what-is-mcp.md
-  - Part 2 — OWASP LLM Top 10:
+  - LLM Top 10:
     - LLM01 Prompt Injection: part2-llm/llm01-prompt-injection.md
     - LLM02 Sensitive Info: part2-llm/llm02-sensitive-information-disclosure.md
     - LLM03 Supply Chain: part2-llm/llm03-supply-chain.md
@@ -113,7 +104,7 @@ nav:
     - LLM08 Embeddings: part2-llm/llm08-vector-embedding-weaknesses.md
     - LLM09 Misinformation: part2-llm/llm09-misinformation.md
     - LLM10 Unbounded Use: part2-llm/llm10-unbounded-consumption.md
-  - Part 3 — OWASP Agentic Top 10:
+  - Agentic Top 10:
     - ASI01 Goal Hijack: part3-agentic/asi01-agent-goal-hijack.md
     - ASI02 Tool Misuse: part3-agentic/asi02-tool-misuse.md
     - ASI03 Privilege Abuse: part3-agentic/asi03-identity-privilege-abuse.md
@@ -124,7 +115,7 @@ nav:
     - ASI08 Cascading Failures: part3-agentic/asi08-cascading-failures.md
     - ASI09 Autonomous Action: part3-agentic/asi09-uncontrolled-autonomous-action.md
     - ASI10 Rogue Agents: part3-agentic/asi10-rogue-agents.md
-  - Part 4 — OWASP MCP Top 10:
+  - MCP Top 10:
     - MCP01 Tool Poisoning: part4-mcp/mcp01-tool-poisoning.md
     - MCP02 Supply Chain: part4-mcp/mcp02-supply-chain-compromise.md
     - MCP03 Command Injection: part4-mcp/mcp03-command-injection.md
@@ -135,20 +126,20 @@ nav:
     - MCP08 Memory Refs: part4-mcp/mcp08-insecure-memory-references.md
     - MCP09 Covert Channels: part4-mcp/mcp09-covert-channel-abuse.md
     - MCP10 Permissions: part4-mcp/mcp10-excessive-permissions.md
-  - Part 5 — Attack Patterns:
+  - Attacks:
     - Indirect Injection: part5-patterns/indirect-prompt-injection.md
     - Injection Firewall: part5-patterns/injection-firewall.md
     - Multi-Agent Chains: part5-patterns/multi-agent-attack-chains.md
-  - Part 6 — Playbooks:
+  - Playbooks:
     - Securing LLM Apps: part6-playbooks/playbook-llm-app.md
     - Securing Agents: part6-playbooks/playbook-agent.md
     - Securing MCP: part6-playbooks/playbook-mcp.md
     - Red Team Checklist: part6-playbooks/red-team-checklist.md
-  - Part 7 — Incidents:
+  - Incidents:
     - Timeline: part7-incidents/incidents-timeline.md
-  - Part 8 — Mapping:
+  - Mapping:
     - Framework Map: part8-mapping/framework-comparison.md
-  - Appendices:
+  - More:
     - Test Case Library: appendix-test-cases.md
     - Quick Reference: appendix-quick-reference.md
     - Further Reading: appendix-resources.md

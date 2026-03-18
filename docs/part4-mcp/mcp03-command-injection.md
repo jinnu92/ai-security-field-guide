@@ -427,4 +427,4 @@ For LLM05, you sanitize the LLM's text output before rendering it. For MCP03, yo
 4. Schema validation catches malformed arguments. Allowlists catch dangerous values. Sandboxing limits blast radius.
 5. Log and monitor tool arguments. The attacker's fingerprint is in the argument values.
 
-**See also:** LLM05 Improper Output Handling, ASI05 Unexpected Code Execution, LLM01 Prompt Injection
+**See also:** [LLM05 Improper Output Handling](../part2-llm/llm05-improper-output-handling.md), [ASI05 Unexpected Code Execution](../part3-agentic/asi05-unexpected-code-execution.md), [LLM01 Prompt Injection](../part2-llm/llm01-prompt-injection.md)
