@@ -2,6 +2,9 @@
 
 ## OWASP Top 10 for LLMs, Agents, and MCP — A Plain-English Reference with Real-World Examples, Attack Walkthroughs, and Defensive Playbooks
 
+**Version:** 0.1 (Last updated: March 19, 2026)  
+See: [Changelog](changelog.md)
+
 ---
 
 ## Welcome

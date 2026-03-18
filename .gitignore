@@ -6,6 +6,7 @@ env/
 
 # Build Artifacts
 site/
+dist/
 
 # OS-Specific Files
 .DS_Store
@@ -29,6 +30,9 @@ Thumbs.db
 # Personal Planning & Internal Docs
 outline.md
 claude.md
+
+# Local Scripts
+deploy.sh
 
 # Log Files
 *.log

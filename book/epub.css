@@ -1,0 +1,18 @@
+body {
+  font-family: serif;
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  font-family: sans-serif;
+}
+
+code, pre {
+  font-family: monospace;
+}
+
+pre {
+  background: #f3f5f7;
+  padding: 0.8em;
+  overflow-x: auto;
+}

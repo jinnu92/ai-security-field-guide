@@ -8,24 +8,22 @@ This appendix collects the most important references, research papers, official 
 
 ### OWASP Top 10 for LLM Applications
 
-- **OWASP Top 10 for LLM Applications (2025)** — The official list of the ten most critical risks in LLM-powered applications. Maintained by the OWASP LLM AI Security project. This is the primary source for Part 2 of this book.
-  - Project page: owasp.org/www-project-top-10-for-large-language-model-applications
+- **[OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/)** — The official list of the ten most critical risks in LLM-powered applications. Maintained by the OWASP GenAI Security Project. This is the primary source for Part 2 of this book.
+  - Latest list: [genai.owasp.org/llm-top-10](https://genai.owasp.org/llm-top-10/)
 
 ### OWASP Top 10 for Agentic Applications
 
-- **OWASP Agentic Security Initiative (ASI)** — The working group that produced the Top 10 for Agentic Applications, focusing on risks specific to autonomous AI agents. This is the primary source for Part 3 of this book.
-  - Project page: owasp.org/www-project-agentic-security-initiative
+- **[OWASP Agentic Security Initiative (ASI)](https://genai.owasp.org/initiatives/agentic-security-initiative/)** — The working group that produced the Top 10 for Agentic Applications, focusing on risks specific to autonomous AI agents. This is the primary source for Part 3 of this book.
 
 ### OWASP MCP Top 10
 
-- **OWASP MCP Top 10** — The community-driven list of the ten most critical risks in Model Context Protocol deployments. This is the primary source for Part 4 of this book.
-  - Project page: owasp.org/www-project-mcp-top-10
+- **[OWASP MCP Top 10](https://owasp.org/www-project-mcp-top-10/)** — The community-driven list of the ten most critical risks in Model Context Protocol deployments. This is the primary source for Part 4 of this book.
 
 ### Related OWASP Projects
 
-- **OWASP AI Security and Privacy Guide** — Comprehensive guidance on securing AI systems, covering a broader scope than the Top 10 lists.
-- **OWASP Machine Learning Security Top 10** — Focused specifically on machine learning pipeline risks (overlaps with but is distinct from the LLM Top 10).
-- **OWASP API Security Top 10** — Relevant because MCP servers expose API-like interfaces and many of the same risks apply.
+- **[OWASP AI Security and Privacy Guide (AI Exchange)](https://owasp.org/www-project-ai-security-and-privacy-guide/)** — Comprehensive guidance on securing AI systems, covering a broader scope than the Top 10 lists.
+- **[OWASP Machine Learning Security Top 10](https://owasp.org/www-project-machine-learning-security-top-10/)** — Focused specifically on machine learning pipeline risks (overlaps with but is distinct from the LLM Top 10).
+- **[OWASP API Security Top 10](https://owasp.org/API-Security/)** — Relevant because MCP servers expose API-like interfaces and many of the same risks apply.
 
 ---
 
@@ -35,14 +33,14 @@ This appendix collects the most important references, research papers, official 
 
 The National Institute of Standards and Technology's framework for managing AI risks. Organized into four functions: Govern, Map, Measure, and Manage. Referenced throughout Part 8 of this book for control mappings.
 
-- NIST AI 100-1: AI Risk Management Framework
-- NIST AI 600-1: Generative AI Profile (specific guidance for generative AI systems)
+- [NIST AI 100-1: AI Risk Management Framework](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10)
+- [NIST AI 600-1: Generative AI Profile](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence)
 
 ### MITRE ATLAS (Adversarial Threat Landscape for AI Systems)
 
 A knowledge base of adversary tactics, techniques, and case studies for AI/ML systems. Modeled after MITRE ATT&CK for traditional cybersecurity. Referenced in Part 8 for technique mappings.
 
-- MITRE ATLAS Matrix: atlas.mitre.org
+- [MITRE ATLAS Matrix](https://atlas.mitre.org/)
 
 ### ISO/IEC Standards
 
@@ -60,39 +58,41 @@ The European Union's regulatory framework for artificial intelligence. Establish
 
 ### Prompt Injection
 
-- **"Not What You've Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection"** — Greshake et al., 2023. The foundational paper on indirect prompt injection attacks, demonstrating how attackers can compromise LLM applications through data sources rather than direct user input.
+- **["Not What You've Signed Up For: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection"](https://arxiv.org/abs/2302.12173)** — Greshake et al., 2023. The foundational paper on indirect prompt injection attacks, demonstrating how attackers can compromise LLM applications through data sources rather than direct user input.
 
-- **"Ignore This Title and HackAPrompt: Exposing Systemic Weaknesses of LLMs through a Global Scale Prompt Hacking Competition"** — Schulhoff et al., 2023. Analysis of thousands of prompt injection techniques from a global competition, providing a taxonomy of injection strategies.
+- **["Ignore This Title and HackAPrompt: Exposing Systemic Weaknesses of LLMs through a Global Scale Prompt Hacking Competition"](https://paper.hackaprompt.com/)** — Schulhoff et al., 2023. Analysis of thousands of prompt injection techniques from a global competition, providing a taxonomy of injection strategies.
 
-- **"Prompt Injection Attack Against LLM-Integrated Applications"** — Liu et al., 2023. Systematic study of prompt injection attack vectors and their effectiveness across different LLM architectures.
+- **["Prompt Injection Attack Against LLM-Integrated Applications"](https://arxiv.org/abs/2306.05499)** — Liu et al., 2023. Systematic study of prompt injection attack vectors and their effectiveness across different LLM architectures.
 
 ### Agent Security
 
-- **"Identifying and Mitigating Vulnerabilities in LLM-Integrated Applications"** — Wu et al., 2024. Framework for identifying security vulnerabilities in applications that integrate LLMs with external tools and data sources.
+- **["Identifying and Mitigating Vulnerabilities in LLM-Integrated Applications"](https://arxiv.org/abs/2311.16153)** — Wu et al., 2024. Framework for identifying security vulnerabilities in applications that integrate LLMs with external tools and data sources.
 
-- **"RealToxicityPrompts: Evaluating Neural Toxic Degeneration in Language Models"** — Gehman et al., 2020. Early work on evaluating how language models can be induced to generate harmful content.
+- **["RealToxicityPrompts: Evaluating Neural Toxic Degeneration in Language Models"](https://arxiv.org/abs/2009.11462)** — Gehman et al., 2020. Early work on evaluating how language models can be induced to generate harmful content.
 
-- **"The Dual Use Dilemma of AI Agents"** — Chan et al., 2024. Analysis of how the same agent capabilities that make AI useful also create security risks.
+### Articles and Commentary
+
+- **["The Dual Use Dilemma of Artificial Intelligence"](https://www.forbes.com/sites/cognitiveworld/2019/01/07/the-dual-use-dilemma-of-artificial-intelligence/)** — Forbes, 2019. An accessible overview of dual-use risk framing for AI systems, useful for executive context.
 
 ### Data and Model Poisoning
 
-- **"Poisoning Language Models During Instruction Tuning"** — Wan et al., 2023. Demonstrates how attackers can compromise models during the fine-tuning phase by poisoning a small number of training examples.
+- **["Poisoning Language Models During Instruction Tuning"](https://arxiv.org/abs/2305.00944)** — Wan et al., 2023. Demonstrates how attackers can compromise models during the fine-tuning phase by poisoning a small number of training examples.
 
-- **"BadNets: Evaluating Backdooring Attacks on Deep Neural Networks"** — Gu et al., 2019. The foundational paper on neural network backdoor attacks through training data poisoning.
+- **["BadNets: Evaluating Backdooring Attacks on Deep Neural Networks"](https://doi.org/10.1109/ACCESS.2019.2909068)** — Gu et al., 2019. The foundational paper on neural network backdoor attacks through training data poisoning.
 
-- **"TrojAI: Detecting Trojans in AI Models"** — NIST TrojAI program. Research program focused on developing methods to detect trojaned AI models.
+- **["TrojAI: Detecting Trojans in AI Models"](https://www.nist.gov/itl/ssd/trojai)** — NIST TrojAI program. Research program focused on developing methods to detect trojaned AI models.
 
 ### RAG and Embedding Security
 
-- **"Poisoning Retrieval Corpora by Injecting Adversarial Passages"** — Zhong et al., 2023. Demonstrates how attackers can poison RAG systems by injecting carefully crafted documents into the retrieval corpus.
+- **["Poisoning Retrieval Corpora by Injecting Adversarial Passages"](https://arxiv.org/abs/2310.19156)** — Zhong et al., 2023. Demonstrates how attackers can poison RAG systems by injecting carefully crafted documents into the retrieval corpus.
 
-- **"Adversarial Attacks on Embeddings: A Survey"** — Song et al., 2023. Survey of techniques for attacking and defending embedding-based systems.
+- **["Adversarial Attacks on Embeddings: A Survey"](https://arxiv.org/html/2508.01845v1)** — Survey of techniques for attacking and defending embedding-based systems.
 
 ### MCP Security
 
-- **"Model Context Protocol Specification"** — Anthropic, 2024. The official MCP specification defining the protocol architecture, primitives, and security model.
+- **["Model Context Protocol (MCP) Documentation"](https://docs.anthropic.com/en/docs/mcp)** — Anthropic documentation for MCP.
 
-- **"Security Considerations for MCP Servers"** — Community documentation, 2025. Practical guidance on securing MCP server deployments, covering authentication, authorization, and input validation.
+- **["Model Context Protocol Specification and Schema"](https://github.com/modelcontextprotocol/modelcontextprotocol)** — Official MCP specification, schema, and docs source.
 
 ---
 

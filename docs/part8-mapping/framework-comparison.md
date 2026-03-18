@@ -225,6 +225,32 @@ in different ways.
 > community has not formalised the technique yet. Do not
 > treat "no ATLAS mapping" as "no risk."
 
+### OWASP AI Security and Privacy Guide Alignment
+
+The OWASP AI Security and Privacy Guide covers broader
+governance, data, and privacy practices that sit above
+the Top 10 lists. This book aligns to the Guide as
+follows:
+
+- **Governance and accountability:** Part 8 (this
+  chapter) and Part 6 playbooks provide the program
+  structure and ownership model the Guide expects.
+- **Data and privacy controls:** Parts 2 and 6 include
+  sensitive data handling, output sanitisation, and
+  logging guidance; Appendix resources point to
+  standards for deeper privacy compliance.
+- **Threat modeling and testing:** Part 6 playbooks and
+  the Red Team Checklist map directly to the Guide's
+  assurance and validation expectations.
+- **Secure deployment and operations:** MCP-specific
+  controls in Part 4 and the MCP playbook in Part 6
+  address runtime security, access control, and
+  monitoring.
+
+If you already use the AI Security and Privacy Guide,
+treat this book as the attack-pattern and control-depth
+companion to its higher-level recommendations.
+
 ### NIST AI RMF 1.0 Control Mappings
 
 The NIST AI Risk Management Framework organises risk
