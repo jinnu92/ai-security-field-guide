@@ -1,0 +1,154 @@
+site_name: AI & MCP Security Field Guide
+site_description: >-
+  OWASP Top 10 for LLMs, Agents, and MCP — A Plain-English
+  Reference with Real-World Examples, Attack Walkthroughs,
+  and Defensive Playbooks
+site_url: http://127.0.0.1:8000/
+
+theme:
+  name: material
+  icon:
+    logo: material/shield-lock
+  font:
+    text: Inter
+    code: JetBrains Mono
+  palette:
+    - scheme: slate
+      primary: custom
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+    - scheme: default
+      primary: custom
+      accent: deep orange
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - search.highlight
+    - search.suggest
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - toc.follow
+
+extra_css:
+  - stylesheets/extra.css
+extra_javascript:
+  - stylesheets/mermaid-dark.js
+
+plugins:
+  - search
+  - print-site:
+      add_to_navigation: true
+      print_page_title: "Print Entire Book"
+      add_print_site_banner: false
+      add_table_of_contents: true
+      toc_title: "Table of Contents"
+      toc_depth: 3
+      enumerate_headings: false
+      enumerate_figures: false
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.mark
+  - pymdownx.critic
+  - pymdownx.keys
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - attr_list
+  - md_in_html
+  - footnotes
+  - def_list
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com
+  generator: false
+
+nav:
+  - Home: index.md
+  - Glossary: glossary.md
+  - Part 1 — Foundations:
+    - What is an LLM?: part1/ch01-what-is-an-llm.md
+    - What is an Agent?: part1/ch02-what-is-an-agent.md
+    - What is MCP?: part1/ch03-what-is-mcp.md
+  - Part 2 — OWASP LLM Top 10:
+    - LLM01 Prompt Injection: part2-llm/llm01-prompt-injection.md
+    - LLM02 Sensitive Info: part2-llm/llm02-sensitive-information-disclosure.md
+    - LLM03 Supply Chain: part2-llm/llm03-supply-chain.md
+    - LLM04 Data Poisoning: part2-llm/llm04-data-model-poisoning.md
+    - LLM05 Output Handling: part2-llm/llm05-improper-output-handling.md
+    - LLM06 Excessive Agency: part2-llm/llm06-excessive-agency.md
+    - LLM07 Prompt Leakage: part2-llm/llm07-system-prompt-leakage.md
+    - LLM08 Embeddings: part2-llm/llm08-vector-embedding-weaknesses.md
+    - LLM09 Misinformation: part2-llm/llm09-misinformation.md
+    - LLM10 Unbounded Use: part2-llm/llm10-unbounded-consumption.md
+  - Part 3 — OWASP Agentic Top 10:
+    - ASI01 Goal Hijack: part3-agentic/asi01-agent-goal-hijack.md
+    - ASI02 Tool Misuse: part3-agentic/asi02-tool-misuse.md
+    - ASI03 Privilege Abuse: part3-agentic/asi03-identity-privilege-abuse.md
+    - ASI04 Supply Chain: part3-agentic/asi04-agentic-supply-chain.md
+    - ASI05 Code Execution: part3-agentic/asi05-unexpected-code-execution.md
+    - ASI06 Memory Poisoning: part3-agentic/asi06-memory-context-poisoning.md
+    - ASI07 Inter-Agent Comms: part3-agentic/asi07-insecure-inter-agent-comms.md
+    - ASI08 Cascading Failures: part3-agentic/asi08-cascading-failures.md
+    - ASI09 Autonomous Action: part3-agentic/asi09-uncontrolled-autonomous-action.md
+    - ASI10 Rogue Agents: part3-agentic/asi10-rogue-agents.md
+  - Part 4 — OWASP MCP Top 10:
+    - MCP01 Tool Poisoning: part4-mcp/mcp01-tool-poisoning.md
+    - MCP02 Supply Chain: part4-mcp/mcp02-supply-chain-compromise.md
+    - MCP03 Command Injection: part4-mcp/mcp03-command-injection.md
+    - MCP04 Insecure Auth: part4-mcp/mcp04-insecure-auth.md
+    - MCP05 Logging: part4-mcp/mcp05-insufficient-logging.md
+    - MCP06 Shadow Servers: part4-mcp/mcp06-shadow-mcp-servers.md
+    - MCP07 Context Spoofing: part4-mcp/mcp07-context-spoofing.md
+    - MCP08 Memory Refs: part4-mcp/mcp08-insecure-memory-references.md
+    - MCP09 Covert Channels: part4-mcp/mcp09-covert-channel-abuse.md
+    - MCP10 Permissions: part4-mcp/mcp10-excessive-permissions.md
+  - Part 5 — Attack Patterns:
+    - Indirect Injection: part5-patterns/indirect-prompt-injection.md
+    - Injection Firewall: part5-patterns/injection-firewall.md
+    - Multi-Agent Chains: part5-patterns/multi-agent-attack-chains.md
+  - Part 6 — Playbooks:
+    - Securing LLM Apps: part6-playbooks/playbook-llm-app.md
+    - Securing Agents: part6-playbooks/playbook-agent.md
+    - Securing MCP: part6-playbooks/playbook-mcp.md
+    - Red Team Checklist: part6-playbooks/red-team-checklist.md
+  - Part 7 — Incidents:
+    - Timeline: part7-incidents/incidents-timeline.md
+  - Part 8 — Mapping:
+    - Framework Map: part8-mapping/framework-comparison.md
+  - Appendices:
+    - Test Case Library: appendix-test-cases.md
+    - Quick Reference: appendix-quick-reference.md
+    - Further Reading: appendix-resources.md

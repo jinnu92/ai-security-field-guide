@@ -1,0 +1,331 @@
+/* ============================================
+   AI & MCP Security Field Guide — Custom Theme
+   ============================================ */
+
+/* --- Color palette overrides --- */
+:root {
+  --md-primary-fg-color: #1a1a2e;
+  --md-primary-fg-color--light: #16213e;
+  --md-primary-fg-color--dark: #0f0f23;
+  --md-accent-fg-color: #e94560;
+  --book-red: #922B21;
+  --book-blue: #1B3A5C;
+  --book-mid-blue: #1A5276;
+  --book-green: #1E8449;
+  --book-amber: #B7950B;
+  --book-grey: #2C3E50;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #0f0f23;
+  --md-primary-fg-color--light: #16213e;
+  --md-primary-fg-color--dark: #0a0a1a;
+  --md-accent-fg-color: #e94560;
+  --md-default-bg-color: #0f0f23;
+  --md-default-bg-color--light: #16213e;
+}
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #1a1a2e;
+  --md-accent-fg-color: #c0392b;
+}
+
+/* --- Typography refinements --- */
+.md-typeset h1 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.8em;
+  border-bottom: 3px solid var(--md-accent-fg-color);
+  padding-bottom: 0.4em;
+}
+
+.md-typeset h2 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-top: 2em;
+  padding-top: 0.5em;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-md-color-scheme="default"] .md-typeset h2 {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.md-typeset h3 {
+  font-weight: 600;
+  color: var(--md-accent-fg-color);
+}
+
+/* --- Content width — center and widen --- */
+.md-grid {
+  max-width: 1440px;
+}
+
+.md-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* --- Blockquotes as styled callout boxes --- */
+.md-typeset blockquote {
+  border-left: 4px solid var(--md-accent-fg-color);
+  background: rgba(233, 69, 96, 0.06);
+  padding: 1em 1.2em;
+  margin: 1.5em 0;
+  border-radius: 0 8px 8px 0;
+  font-style: normal;
+}
+
+[data-md-color-scheme="slate"] .md-typeset blockquote {
+  background: rgba(233, 69, 96, 0.08);
+}
+
+.md-typeset blockquote p:first-child strong:first-child {
+  display: inline-block;
+  margin-bottom: 0.3em;
+  font-size: 0.95em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Attacker's Perspective — red accent */
+.md-typeset blockquote p:first-child strong:first-child:not(:empty) {
+  color: #e94560;
+}
+
+/* --- Tables — cleaner look --- */
+.md-typeset table:not([class]) {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  font-size: 0.85em;
+  width: 100%;
+}
+
+.md-typeset table:not([class]) thead {
+  background: var(--md-primary-fg-color);
+}
+
+.md-typeset table:not([class]) thead th {
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  letter-spacing: 0.04em;
+  padding: 0.8em 1em;
+}
+
+.md-typeset table:not([class]) tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+[data-md-color-scheme="default"] .md-typeset table:not([class]) tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.md-typeset table:not([class]) td {
+  padding: 0.7em 1em;
+}
+
+/* --- Code blocks — enhanced --- */
+.md-typeset pre {
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.md-typeset code {
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+/* --- Mermaid diagrams — centered with dark background --- */
+.md-typeset .mermaid {
+  text-align: center;
+  margin: 2em auto;
+  padding: 1.5em;
+  background: #1a1a2e;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-md-color-scheme="default"] .md-typeset .mermaid {
+  background: #1e2a3a;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Navigation tabs — styled --- */
+.md-tabs {
+  background: var(--md-primary-fg-color--dark);
+}
+
+.md-tabs__link {
+  font-size: 0.72em;
+  font-weight: 500;
+  opacity: 0.7;
+}
+
+.md-tabs__link--active {
+  opacity: 1;
+  border-bottom: 2px solid var(--md-accent-fg-color);
+}
+
+/* --- Sidebar — refined --- */
+.md-sidebar__scrollwrap {
+  padding: 0.5em 0;
+}
+
+.md-nav__link {
+  font-size: 0.82em;
+}
+
+.md-nav__item--active > .md-nav__link {
+  color: var(--md-accent-fg-color);
+  font-weight: 600;
+}
+
+/* --- TOC on the right side --- */
+.md-sidebar--secondary {
+  order: 2;
+}
+
+/* --- Footer navigation (prev/next) --- */
+.md-footer__link {
+  padding: 1em;
+}
+
+.md-footer-meta {
+  background: var(--md-primary-fg-color--dark);
+}
+
+/* --- Print buttons --- */
+.print-buttons {
+  display: flex;
+  gap: 0.75em;
+  margin: 1em 0 2em 0;
+  flex-wrap: wrap;
+}
+
+.print-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0.6em 1.2em;
+  border-radius: 6px;
+  font-size: 0.82em;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.print-btn svg {
+  flex-shrink: 0;
+}
+
+.print-btn--page {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--md-default-fg-color);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.print-btn--page:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: var(--md-accent-fg-color);
+  color: var(--md-accent-fg-color);
+}
+
+[data-md-color-scheme="default"] .print-btn--page {
+  background: #f0f0f0;
+  border: 1px solid #ddd;
+  color: #333;
+}
+
+[data-md-color-scheme="default"] .print-btn--page:hover {
+  background: #e0e0e0;
+  border-color: var(--md-accent-fg-color);
+  color: var(--md-accent-fg-color);
+}
+
+.print-btn--book {
+  background: var(--md-accent-fg-color);
+  color: #fff;
+  border: 1px solid var(--md-accent-fg-color);
+}
+
+.print-btn--book:hover {
+  opacity: 0.85;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(233, 69, 96, 0.3);
+  color: #fff;
+}
+
+@media print {
+  .print-buttons {
+    display: none !important;
+  }
+}
+
+/* --- Horizontal rules as section dividers --- */
+.md-typeset hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--md-accent-fg-color),
+    transparent
+  );
+  margin: 2.5em 0;
+  opacity: 0.4;
+}
+
+/* --- "See also" links at bottom --- */
+.md-typeset p:last-child a,
+.md-typeset p:nth-last-child(2) a {
+  font-weight: 500;
+}
+
+/* --- Smooth scrolling --- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* --- Print improvements --- */
+@media print {
+  .md-sidebar,
+  .md-tabs,
+  .md-header,
+  .md-footer {
+    display: none !important;
+  }
+
+  .md-content {
+    max-width: 100%;
+  }
+
+  .md-typeset h1 {
+    page-break-before: always;
+  }
+
+  .md-typeset h1:first-of-type {
+    page-break-before: avoid;
+  }
+
+  .md-typeset table:not([class]) {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+
+  .md-typeset blockquote {
+    background: #f5f5f5 !important;
+    border-left-color: #c0392b;
+  }
+
+  .md-typeset .mermaid {
+    border: 1px solid #ccc;
+    background: #fff !important;
+  }
+}
