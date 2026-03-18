@@ -10,7 +10,7 @@ This guide provides a comprehensive look at the security landscape for Large Lan
 
 ### Option 1: Live Website (Recommended)
 You can view the interactive version of this book at:
-[https://your-username.github.io/ai-security-book/](https://your-username.github.io/ai-security-book/) (Replace with your GitHub username once deployed)
+[https://jinnu92.github.io/ai-security-book/](https://jinnu92.github.io/ai-security-book/) (Replace with your GitHub username once deployed)
 
 ### Option 2: Local Development
 To run the book locally:
