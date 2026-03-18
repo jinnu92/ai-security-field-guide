@@ -1,4 +1,4 @@
-# AI & MCP Security Field Guide
+# AI Security: The Field Guide to LLMs, Agents, and MCP
 
 **OWASP Top 10 for LLMs, Agents, and MCP** — A Plain-English Reference with Real-World Examples, Attack Walkthroughs, and Defensive Playbooks.
 
