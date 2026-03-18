@@ -1,0 +1,418 @@
+/* ============================================
+   AI & MCP Security Field Guide — Custom Theme
+   ============================================ */
+
+/* --- Color palette overrides --- */
+:root {
+  --md-primary-fg-color: #1a1a2e;
+  --md-primary-fg-color--light: #16213e;
+  --md-primary-fg-color--dark: #0f0f23;
+  --md-accent-fg-color: #e94560;
+  --book-red: #922B21;
+  --book-blue: #1B3A5C;
+  --book-mid-blue: #1A5276;
+  --book-green: #1E8449;
+  --book-amber: #B7950B;
+  --book-grey: #2C3E50;
+  --glow-accent: rgba(233, 69, 96, 0.15);
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-border: rgba(255, 255, 255, 0.08);
+}
+
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #0f0f23;
+  --md-primary-fg-color--light: #16213e;
+  --md-primary-fg-color--dark: #0a0a1a;
+  --md-accent-fg-color: #e94560;
+  --md-default-bg-color: #0f0f23;
+  --md-default-bg-color--light: #16213e;
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-border: rgba(255, 255, 255, 0.08);
+}
+
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #1a1a2e;
+  --md-accent-fg-color: #c0392b;
+  --glow-accent: rgba(192, 57, 43, 0.1);
+  --card-bg: rgba(0, 0, 0, 0.02);
+  --card-border: rgba(0, 0, 0, 0.08);
+}
+
+/* --- Typography refinements --- */
+.md-typeset h1 {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.8em;
+  border-bottom: 3px solid var(--md-accent-fg-color);
+  padding-bottom: 0.4em;
+  background: linear-gradient(
+    135deg,
+    var(--md-default-fg-color),
+    var(--md-accent-fg-color)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.md-typeset h2 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-top: 2.2em;
+  padding-top: 0.6em;
+  border-top: 1px solid var(--card-border);
+}
+
+.md-typeset h3 {
+  font-weight: 600;
+  color: var(--md-accent-fg-color);
+}
+
+/* --- Paragraph readability --- */
+.md-typeset p {
+  line-height: 1.8;
+}
+
+.md-typeset li {
+  line-height: 1.7;
+}
+
+/* --- Content width — center and widen --- */
+.md-grid {
+  max-width: 1440px;
+}
+
+.md-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* --- Blockquotes as styled callout boxes --- */
+.md-typeset blockquote {
+  border-left: 4px solid var(--md-accent-fg-color);
+  background: var(--glow-accent);
+  padding: 1.2em 1.4em;
+  margin: 1.5em 0;
+  border-radius: 0 10px 10px 0;
+  font-style: normal;
+  backdrop-filter: blur(4px);
+}
+
+[data-md-color-scheme="slate"] .md-typeset blockquote {
+  background: rgba(233, 69, 96, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+.md-typeset blockquote p:first-child strong:first-child {
+  display: inline-block;
+  margin-bottom: 0.3em;
+  font-size: 0.88em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.15em 0.6em;
+  border-radius: 4px;
+  background: rgba(233, 69, 96, 0.15);
+}
+
+/* Attacker's Perspective — red accent */
+.md-typeset blockquote p:first-child strong:first-child:not(:empty) {
+  color: #e94560;
+}
+
+/* --- Tables — cleaner look --- */
+.md-typeset table:not([class]) {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  font-size: 0.85em;
+  width: 100%;
+  border: 1px solid var(--card-border);
+}
+
+.md-typeset table:not([class]) thead {
+  background: linear-gradient(
+    135deg,
+    var(--md-primary-fg-color),
+    var(--md-primary-fg-color--light)
+  );
+}
+
+.md-typeset table:not([class]) thead th {
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.82em;
+  letter-spacing: 0.06em;
+  padding: 0.9em 1em;
+}
+
+.md-typeset table:not([class]) tbody tr {
+  transition: background 0.15s ease;
+}
+
+.md-typeset table:not([class]) tbody tr:nth-child(even) {
+  background: var(--card-bg);
+}
+
+.md-typeset table:not([class]) tbody tr:hover {
+  background: var(--glow-accent);
+}
+
+[data-md-color-scheme="default"]
+  .md-typeset table:not([class]) tbody tr:nth-child(even) {
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.md-typeset table:not([class]) td {
+  padding: 0.7em 1em;
+}
+
+/* --- Code blocks — enhanced --- */
+.md-typeset pre {
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--card-border);
+}
+
+.md-typeset code {
+  border-radius: 4px;
+  font-size: 0.85em;
+  padding: 0.15em 0.4em;
+}
+
+/* Inline code highlight */
+.md-typeset :not(pre) > code {
+  background: rgba(233, 69, 96, 0.1);
+  border: 1px solid rgba(233, 69, 96, 0.15);
+  color: var(--md-accent-fg-color);
+}
+
+[data-md-color-scheme="default"] .md-typeset :not(pre) > code {
+  background: rgba(192, 57, 43, 0.08);
+  border: 1px solid rgba(192, 57, 43, 0.12);
+}
+
+/* --- Mermaid diagrams — centered with dark background --- */
+.md-typeset .mermaid {
+  text-align: center;
+  margin: 2em auto;
+  padding: 1.5em;
+  background: #1a1a2e;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+[data-md-color-scheme="default"] .md-typeset .mermaid {
+  background: #1e2a3a;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* --- Header — subtle bottom glow --- */
+.md-header {
+  box-shadow: 0 2px 20px rgba(233, 69, 96, 0.1);
+}
+
+.md-header__topic {
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+}
+
+/* --- Navigation tabs — compact, scrollable --- */
+.md-tabs {
+  background: var(--md-primary-fg-color--dark);
+  border-bottom: 1px solid rgba(233, 69, 96, 0.2);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.md-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.md-tabs__list {
+  white-space: nowrap;
+}
+
+.md-tabs__link {
+  font-size: 0.58rem !important;
+  font-weight: 600 !important;
+  opacity: 0.7 !important;
+  padding: 0.55rem 0.5rem !important;
+  display: inline-block !important;
+  line-height: 1.2 !important;
+  white-space: nowrap !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.02em !important;
+  transition: all 0.2s ease !important;
+  border-bottom: 2px solid transparent !important;
+}
+
+.md-tabs__link:hover {
+  opacity: 1 !important;
+  color: var(--md-accent-fg-color) !important;
+}
+
+.md-tabs__link--active {
+  opacity: 1 !important;
+  color: var(--md-accent-fg-color) !important;
+  border-bottom: 2px solid var(--md-accent-fg-color) !important;
+}
+
+/* --- Left sidebar — refined --- */
+.md-sidebar--primary {
+  border-right: 1px solid var(--card-border);
+}
+
+.md-sidebar__scrollwrap {
+  padding: 0.5em 0;
+}
+
+.md-nav__link {
+  font-size: 0.8em;
+  padding: 0.4em 0.6em;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.md-nav__link:hover {
+  background: var(--card-bg);
+}
+
+.md-nav__item--active > .md-nav__link {
+  color: var(--md-accent-fg-color);
+  font-weight: 600;
+  background: var(--glow-accent);
+}
+
+/* --- TOC on the right side --- */
+.md-sidebar--secondary {
+  order: 2;
+  border-left: 1px solid var(--card-border);
+}
+
+.md-sidebar--secondary .md-nav__link {
+  font-size: 0.75em;
+  opacity: 0.8;
+}
+
+.md-sidebar--secondary .md-nav__link--active {
+  opacity: 1;
+  color: var(--md-accent-fg-color);
+  border-left: 2px solid var(--md-accent-fg-color);
+  padding-left: 0.5em;
+}
+
+/* --- Breadcrumbs path styling --- */
+.md-path {
+  opacity: 0.6;
+  font-size: 0.78em;
+}
+
+/* --- Footer navigation (prev/next) --- */
+.md-footer__link {
+  padding: 1.2em;
+  transition: background 0.2s ease;
+}
+
+.md-footer__link:hover {
+  background: var(--glow-accent);
+}
+
+.md-footer-meta {
+  background: var(--md-primary-fg-color--dark);
+  border-top: 1px solid rgba(233, 69, 96, 0.15);
+}
+
+/* --- Horizontal rules as section dividers --- */
+.md-typeset hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--md-accent-fg-color),
+    transparent
+  );
+  margin: 2.5em 0;
+  opacity: 0.4;
+}
+
+/* --- "See also" links — styled as chips --- */
+.md-typeset strong:first-child {
+  font-weight: 700;
+}
+
+/* --- Smooth scrolling --- */
+html {
+  scroll-behavior: smooth;
+}
+
+/* --- Search bar enhancement --- */
+.md-search__input {
+  border-radius: 8px;
+}
+
+/* --- Admonitions enhancement --- */
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  border-width: 0 0 0 4px;
+}
+
+/* --- Selection color --- */
+::selection {
+  background: rgba(233, 69, 96, 0.3);
+}
+
+/* --- Scroll progress indicator via accent bar --- */
+.md-header[data-md-state="shadow"] {
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* --- Mobile responsive tabs --- */
+@media screen and (max-width: 76.25em) {
+  .md-tabs__link {
+    font-size: 0.65rem !important;
+    padding: 0.5rem 0.6rem !important;
+  }
+}
+
+/* --- Bold text in paragraphs — subtle highlight --- */
+.md-typeset p strong {
+  color: var(--md-accent-fg-color);
+  font-weight: 700;
+}
+
+[data-md-color-scheme="default"] .md-typeset p strong {
+  color: #922B21;
+}
+
+/* --- Links — underline on hover --- */
+.md-typeset a {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.md-typeset a:hover {
+  border-bottom-color: var(--md-accent-fg-color);
+}
+
+/* --- Content card feel for main area --- */
+@media screen and (min-width: 76.25em) {
+  .md-content__inner {
+    padding: 2em 2.5em;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 1px solid var(--card-border);
+    margin: 1em 0;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  [data-md-color-scheme="slate"] .md-content__inner {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  }
+}

@@ -1,0 +1,3716 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="OWASP Top 10 for LLMs, Agents, and MCP — A Plain-English Reference with Real-World Examples, Attack Walkthroughs, and Defensive Playbooks">
+      
+      
+      
+        <link rel="canonical" href="http://127.0.0.1:8000/appendix-quick-reference/">
+      
+      
+        <link rel="prev" href="../appendix-test-cases/">
+      
+      
+        <link rel="next" href="../appendix-resources/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>Quick Reference - AI Security: The Field Guide to LLMs, Agents, and MCP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#appendix-quick-reference-all-30-owasp-entries" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AI Security: The Field Guide to LLMs, Agents, and MCP" class="md-header__button md-logo" aria-label="AI Security: The Field Guide to LLMs, Agents, and MCP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5zm0 6c1.4 0 2.8 1.1 2.8 2.5V11c.6 0 1.2.6 1.2 1.3v3.5c0 .6-.6 1.2-1.3 1.2H9.2c-.6 0-1.2-.6-1.2-1.3v-3.5c0-.6.6-1.2 1.2-1.2V9.5C9.2 8.1 10.6 7 12 7m0 1.2c-.8 0-1.5.5-1.5 1.3V11h3V9.5c0-.8-.7-1.3-1.5-1.3"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Security: The Field Guide to LLMs, Agents, and MCP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Quick Reference
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../glossary/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Glossary
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../part1/ch01-what-is-an-llm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../part2-llm/llm01-prompt-injection/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LLM Top 10
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../part3-agentic/asi01-agent-goal-hijack/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic Top 10
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../part4-mcp/mcp01-tool-poisoning/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MCP Top 10
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../part5-patterns/indirect-prompt-injection/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Attacks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../part6-playbooks/playbook-llm-app/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Playbooks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../part7-incidents/incidents-timeline/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Incidents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../part8-mapping/framework-comparison/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Mapping
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../appendix-test-cases/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  More
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AI Security: The Field Guide to LLMs, Agents, and MCP" class="md-nav__button md-logo" aria-label="AI Security: The Field Guide to LLMs, Agents, and MCP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5zm0 6c1.4 0 2.8 1.1 2.8 2.5V11c.6 0 1.2.6 1.2 1.3v3.5c0 .6-.6 1.2-1.3 1.2H9.2c-.6 0-1.2-.6-1.2-1.3v-3.5c0-.6.6-1.2 1.2-1.2V9.5C9.2 8.1 10.6 7 12 7m0 1.2c-.8 0-1.5.5-1.5 1.3V11h3V9.5c0-.8-.7-1.3-1.5-1.3"/></svg>
+
+    </a>
+    AI Security: The Field Guide to LLMs, Agents, and MCP
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part1/ch01-what-is-an-llm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is an LLM?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part1/ch02-what-is-an-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is an Agent?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part1/ch03-what-is-mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is MCP?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Top 10
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLM Top 10
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part2-llm/llm01-prompt-injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM01 Prompt Injection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part2-llm/llm02-sensitive-information-disclosure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM02 Sensitive Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part2-llm/llm03-supply-chain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM03 Supply Chain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part2-llm/llm04-data-model-poisoning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM04 Data Poisoning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part2-llm/llm05-improper-output-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM05 Output Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part2-llm/llm06-excessive-agency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM06 Excessive Agency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part2-llm/llm07-system-prompt-leakage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM07 Prompt Leakage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part2-llm/llm08-vector-embedding-weaknesses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM08 Embeddings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part2-llm/llm09-misinformation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM09 Misinformation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part2-llm/llm10-unbounded-consumption/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM10 Unbounded Use
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agentic Top 10
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Agentic Top 10
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part3-agentic/asi01-agent-goal-hijack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI01 Goal Hijack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part3-agentic/asi02-tool-misuse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI02 Tool Misuse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part3-agentic/asi03-identity-privilege-abuse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI03 Privilege Abuse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part3-agentic/asi04-agentic-supply-chain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI04 Supply Chain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part3-agentic/asi05-unexpected-code-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI05 Code Execution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part3-agentic/asi06-memory-context-poisoning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI06 Memory Poisoning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part3-agentic/asi07-insecure-inter-agent-comms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI07 Inter-Agent Comms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part3-agentic/asi08-cascading-failures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI08 Cascading Failures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part3-agentic/asi09-uncontrolled-autonomous-action/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI09 Autonomous Action
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part3-agentic/asi10-rogue-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI10 Rogue Agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Top 10
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MCP Top 10
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part4-mcp/mcp01-tool-poisoning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP01 Tool Poisoning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part4-mcp/mcp02-supply-chain-compromise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP02 Supply Chain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part4-mcp/mcp03-command-injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP03 Command Injection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part4-mcp/mcp04-insecure-auth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP04 Insecure Auth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part4-mcp/mcp05-insufficient-logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP05 Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part4-mcp/mcp06-shadow-mcp-servers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP06 Shadow Servers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part4-mcp/mcp07-context-spoofing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP07 Context Spoofing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part4-mcp/mcp08-insecure-memory-references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP08 Memory Refs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part4-mcp/mcp09-covert-channel-abuse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP09 Covert Channels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part4-mcp/mcp10-excessive-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP10 Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attacks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Attacks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part5-patterns/indirect-prompt-injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Indirect Injection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part5-patterns/injection-firewall/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Injection Firewall
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part5-patterns/multi-agent-attack-chains/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Chains
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Playbooks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Playbooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part6-playbooks/playbook-llm-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing LLM Apps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part6-playbooks/playbook-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing Agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part6-playbooks/playbook-mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part6-playbooks/red-team-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Red Team Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incidents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Incidents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part7-incidents/incidents-timeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Timeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mapping
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Mapping
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../part8-mapping/framework-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Framework Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    More
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    More
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix-test-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Test Case Library
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-owasp-top-10-for-llm-applications-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 2 — OWASP Top 10 for LLM Applications (2025)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 2 — OWASP Top 10 for LLM Applications (2025)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llm01-prompt-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM01 — Prompt Injection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm02-sensitive-information-disclosure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM02 — Sensitive Information Disclosure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm03-supply-chain-vulnerabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM03 — Supply Chain Vulnerabilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm04-data-and-model-poisoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM04 — Data and Model Poisoning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm05-improper-output-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM05 — Improper Output Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm06-excessive-agency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM06 — Excessive Agency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm07-system-prompt-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM07 — System Prompt Leakage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm08-vector-and-embedding-weaknesses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM08 — Vector and Embedding Weaknesses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm09-misinformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM09 — Misinformation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm10-unbounded-consumption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM10 — Unbounded Consumption
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-owasp-top-10-for-agentic-applications-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 3 — OWASP Top 10 for Agentic Applications (2026)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 3 — OWASP Top 10 for Agentic Applications (2026)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#asi01-agent-goal-hijack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI01 — Agent Goal Hijack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi02-tool-misuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI02 — Tool Misuse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi03-identity-and-privilege-abuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI03 — Identity and Privilege Abuse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi04-agentic-supply-chain-compromise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI04 — Agentic Supply Chain Compromise
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi05-unexpected-code-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI05 — Unexpected Code Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi06-memory-and-context-poisoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI06 — Memory and Context Poisoning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi07-insecure-inter-agent-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI07 — Insecure Inter-Agent Communication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi08-cascading-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI08 — Cascading Failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi09-uncontrolled-autonomous-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI09 — Uncontrolled Autonomous Action
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi10-rogue-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI10 — Rogue Agents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-4-owasp-mcp-top-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 4 — OWASP MCP Top 10
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 4 — OWASP MCP Top 10">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mcp01-tool-poisoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP01 — Tool Poisoning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp02-supply-chain-compromise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP02 — Supply Chain Compromise
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp03-command-injection-via-tool-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP03 — Command Injection via Tool Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp04-insecure-authentication-and-authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP04 — Insecure Authentication and Authorization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp05-insufficient-logging-and-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP05 — Insufficient Logging and Monitoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp06-shadow-mcp-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP06 — Shadow MCP Servers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp07-context-spoofing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP07 — Context Spoofing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp08-insecure-memory-and-resource-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP08 — Insecure Memory and Resource References
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp09-covert-channel-abuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP09 — Covert Channel Abuse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp10-excessive-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP10 — Excessive Permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../appendix-resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Further Reading
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../disclaimer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disclaimer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methodology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methodology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../report-issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Report Issues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#part-2-owasp-top-10-for-llm-applications-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 2 — OWASP Top 10 for LLM Applications (2025)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 2 — OWASP Top 10 for LLM Applications (2025)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llm01-prompt-injection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM01 — Prompt Injection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm02-sensitive-information-disclosure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM02 — Sensitive Information Disclosure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm03-supply-chain-vulnerabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM03 — Supply Chain Vulnerabilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm04-data-and-model-poisoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM04 — Data and Model Poisoning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm05-improper-output-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM05 — Improper Output Handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm06-excessive-agency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM06 — Excessive Agency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm07-system-prompt-leakage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM07 — System Prompt Leakage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm08-vector-and-embedding-weaknesses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM08 — Vector and Embedding Weaknesses
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm09-misinformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM09 — Misinformation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#llm10-unbounded-consumption" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM10 — Unbounded Consumption
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-3-owasp-top-10-for-agentic-applications-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 3 — OWASP Top 10 for Agentic Applications (2026)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 3 — OWASP Top 10 for Agentic Applications (2026)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#asi01-agent-goal-hijack" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI01 — Agent Goal Hijack
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi02-tool-misuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI02 — Tool Misuse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi03-identity-and-privilege-abuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI03 — Identity and Privilege Abuse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi04-agentic-supply-chain-compromise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI04 — Agentic Supply Chain Compromise
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi05-unexpected-code-execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI05 — Unexpected Code Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi06-memory-and-context-poisoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI06 — Memory and Context Poisoning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi07-insecure-inter-agent-communication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI07 — Insecure Inter-Agent Communication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi08-cascading-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI08 — Cascading Failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi09-uncontrolled-autonomous-action" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI09 — Uncontrolled Autonomous Action
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asi10-rogue-agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI10 — Rogue Agents
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#part-4-owasp-mcp-top-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Part 4 — OWASP MCP Top 10
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Part 4 — OWASP MCP Top 10">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mcp01-tool-poisoning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP01 — Tool Poisoning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp02-supply-chain-compromise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP02 — Supply Chain Compromise
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp03-command-injection-via-tool-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP03 — Command Injection via Tool Arguments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp04-insecure-authentication-and-authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP04 — Insecure Authentication and Authorization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp05-insufficient-logging-and-monitoring" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP05 — Insufficient Logging and Monitoring
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp06-shadow-mcp-servers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP06 — Shadow MCP Servers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp07-context-spoofing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP07 — Context Spoofing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp08-insecure-memory-and-resource-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP08 — Insecure Memory and Resource References
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp09-covert-channel-abuse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP09 — Covert Channel Abuse
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mcp10-excessive-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MCP10 — Excessive Permissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href=".." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../appendix-test-cases/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    More
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="appendix-quick-reference-all-30-owasp-entries">Appendix: Quick Reference — All 30 OWASP Entries<a class="headerlink" href="#appendix-quick-reference-all-30-owasp-entries" title="Permanent link">&para;</a></h1>
+<p>This appendix provides a one-paragraph summary of each of the 30 OWASP entries covered in this book. Use it as a rapid lookup when you need to recall what a specific risk is about, or as an executive briefing for stakeholders who need an overview without reading full chapters.</p>
+<hr />
+<h2 id="part-2-owasp-top-10-for-llm-applications-2025">Part 2 — OWASP Top 10 for LLM Applications (2025)<a class="headerlink" href="#part-2-owasp-top-10-for-llm-applications-2025" title="Permanent link">&para;</a></h2>
+<h3 id="llm01-prompt-injection">LLM01 — Prompt Injection<a class="headerlink" href="#llm01-prompt-injection" title="Permanent link">&para;</a></h3>
+<p>An attacker crafts input that causes the LLM to ignore its developer-provided instructions and follow the attacker's instructions instead. This is the most fundamental vulnerability in LLM systems, analogous to SQL injection in traditional web applications. It comes in two forms: <strong>direct injection</strong> (the attacker types malicious instructions) and <strong>indirect injection</strong> (malicious instructions are embedded in data the LLM processes, such as web pages, documents, or database records). Prompt injection is difficult to fully prevent because the LLM cannot reliably distinguish between legitimate instructions and injected ones — both are processed as natural language text in the same context window.</p>
+<h3 id="llm02-sensitive-information-disclosure">LLM02 — Sensitive Information Disclosure<a class="headerlink" href="#llm02-sensitive-information-disclosure" title="Permanent link">&para;</a></h3>
+<p>LLMs can leak sensitive data through multiple channels: reproducing memorized training data (including PII, credentials, or proprietary code), revealing the contents of their system prompt, exposing data from the context window (such as other users' queries in shared deployments), or surfacing restricted documents through RAG retrieval that bypasses access controls. The risk is amplified in enterprise deployments where the LLM has access to sensitive internal data through tool calls or document retrieval. Defences include identity-aware retrieval, output PII filtering, and treating the system prompt as semi-public information.</p>
+<h3 id="llm03-supply-chain-vulnerabilities">LLM03 — Supply Chain Vulnerabilities<a class="headerlink" href="#llm03-supply-chain-vulnerabilities" title="Permanent link">&para;</a></h3>
+<p>The LLM supply chain includes model weights, training data, fine-tuning datasets, plugins, agent frameworks, and MCP servers — each of which can be compromised. Unlike traditional software where you can inspect source code, model weights are opaque binary blobs that cannot be audited for backdoors through code review. Attacks include compromised model hosting, poisoned fine-tuning data, malicious plugins with excessive permissions, and dependency confusion in ML pipelines. Defences require model provenance verification, behavioral testing, plugin sandboxing, and dependency pinning.</p>
+<h3 id="llm04-data-and-model-poisoning">LLM04 — Data and Model Poisoning<a class="headerlink" href="#llm04-data-and-model-poisoning" title="Permanent link">&para;</a></h3>
+<p>An attacker manipulates training data or the fine-tuning process to embed backdoors, biases, or vulnerabilities into the model itself. Poisoned models behave normally for most inputs but produce attacker-controlled outputs when specific trigger patterns are present. Because the poisoning happens during training, effects persist across all users and all sessions. Detecting poisoned models is challenging because the backdoor only activates on specific triggers that the attacker controls, making standard testing insufficient. Defences include data provenance tracking, differential testing, and statistical analysis of model outputs.</p>
+<h3 id="llm05-improper-output-handling">LLM05 — Improper Output Handling<a class="headerlink" href="#llm05-improper-output-handling" title="Permanent link">&para;</a></h3>
+<p>When LLM output is passed to downstream systems without sanitization, it becomes a bridge between AI vulnerabilities and traditional security vulnerabilities. An attacker uses prompt injection to cause the LLM to generate output containing XSS payloads (rendered in a browser), SQL injection (executed against a database), command injection (run in a shell), or SSRF payloads (fetched by the server). The LLM acts as an unwitting intermediary, translating natural language attacks into traditional exploit code. The defence is straightforward: treat all LLM output as untrusted input and apply context-specific sanitization before passing it to any downstream system.</p>
+<h3 id="llm06-excessive-agency">LLM06 — Excessive Agency<a class="headerlink" href="#llm06-excessive-agency" title="Permanent link">&para;</a></h3>
+<p>When an LLM-based system is given more tools, permissions, or autonomy than required for its intended task, every other vulnerability becomes more dangerous. Excessive agency comes in three forms: excessive <strong>functionality</strong> (too many tools), excessive <strong>permissions</strong> (tools with more access than needed), and excessive <strong>autonomy</strong> (actions taken without human approval). This risk acts as an amplifier — a prompt injection against a chatbot with no tools produces harmful text, while the same injection against an over-privileged agent with email, database, and payment tools can cause data exfiltration, unauthorized transactions, and system compromise.</p>
+<h3 id="llm07-system-prompt-leakage">LLM07 — System Prompt Leakage<a class="headerlink" href="#llm07-system-prompt-leakage" title="Permanent link">&para;</a></h3>
+<p>System prompts often contain sensitive information: business logic, security control descriptions, API endpoint details, tool schemas, and sometimes even API keys or credentials. Attackers extract system prompts using techniques including direct requests, role-playing scenarios, encoding tricks (asking for base64 output), instruction overrides, and incremental extraction across multiple turns. Simply telling the model to "never reveal the system prompt" is insufficient because the instruction to keep secrets is itself vulnerable to the same override techniques. Defence requires treating the system prompt as semi-public, never placing secrets in it, and implementing output scanning for prompt content.</p>
+<h3 id="llm08-vector-and-embedding-weaknesses">LLM08 — Vector and Embedding Weaknesses<a class="headerlink" href="#llm08-vector-and-embedding-weaknesses" title="Permanent link">&para;</a></h3>
+<p>RAG (Retrieval-Augmented Generation) systems retrieve documents from vector databases to ground LLM responses in specific data. These systems create multiple attack surfaces: documents can be poisoned with injection payloads that are retrieved for specific queries, access controls are often missing (allowing users to retrieve documents they should not have access to), and embedding inversion attacks can recover original text from stored vectors. The lack of access controls is the most common and impactful weakness — most vector databases treat all stored documents as equally accessible to all users, regardless of the sensitivity of the original data.</p>
+<h3 id="llm09-misinformation">LLM09 — Misinformation<a class="headerlink" href="#llm09-misinformation" title="Permanent link">&para;</a></h3>
+<p>LLMs generate false but convincing information (hallucination) as a natural byproduct of their statistical text generation process. This becomes a security risk when users trust LLM output for high-stakes decisions in medical, legal, or financial contexts. The risk is compounded when attackers deliberately induce misinformation by poisoning RAG sources, manipulating context, or exploiting the model's tendency to generate authoritative-sounding text. Defences include grounding responses in verified sources, implementing confidence calibration, requiring human review for high-stakes outputs, and adding clear disclaimers about the limitations of AI-generated information.</p>
+<h3 id="llm10-unbounded-consumption">LLM10 — Unbounded Consumption<a class="headerlink" href="#llm10-unbounded-consumption" title="Permanent link">&para;</a></h3>
+<p>Attackers can exhaust computational resources, drive up API costs, or cause denial of service by exploiting the lack of limits on LLM usage. Techniques include prompting the model to generate maximum-length responses repeatedly (wallet-draining attacks), triggering recursive tool call loops in agentic systems, sending high volumes of requests to overwhelm rate limits, and crafting inputs that maximize processing time. In agentic systems, the risk is amplified because each iteration of the agent loop generates additional API calls. Defences require hard token limits, per-user rate limiting, budget caps with automatic kill switches, and iteration limits on agent loops.</p>
+<hr />
+<h2 id="part-3-owasp-top-10-for-agentic-applications-2026">Part 3 — OWASP Top 10 for Agentic Applications (2026)<a class="headerlink" href="#part-3-owasp-top-10-for-agentic-applications-2026" title="Permanent link">&para;</a></h2>
+<h3 id="asi01-agent-goal-hijack">ASI01 — Agent Goal Hijack<a class="headerlink" href="#asi01-agent-goal-hijack" title="Permanent link">&para;</a></h3>
+<p>An attacker redirects an agent's objective so it works toward the attacker's goals instead of the user's. Unlike simple prompt injection (which affects a single LLM response), goal hijack persists across the agent's planning loop — the agent continues to plan and act, but now in service of the attacker. Hijack vectors include poisoned tool results, manipulated memory, and injected context. In multi-agent systems, a hijacked orchestrator agent can redirect all downstream agents toward the attacker's objective.</p>
+<h3 id="asi02-tool-misuse">ASI02 — Tool Misuse<a class="headerlink" href="#asi02-tool-misuse" title="Permanent link">&para;</a></h3>
+<p>Agents use legitimate tools in unintended ways — calling tools with malicious parameters, using tools in unauthorized sequences, or exploiting tool side effects. Unlike excessive agency (having too many tools), tool misuse exploits the gap between what a tool is documented to do and what it can actually do when called with creative parameters. Defences include parameter allow-lists, tool sequence policies, and rate limiting on sensitive operations.</p>
+<h3 id="asi03-identity-and-privilege-abuse">ASI03 — Identity and Privilege Abuse<a class="headerlink" href="#asi03-identity-and-privilege-abuse" title="Permanent link">&para;</a></h3>
+<p>Agents typically operate with the identity and credentials of their deployer rather than the end user, bypassing role-based access controls. A user with read-only access can trigger an agent running with admin credentials, effectively escalating their privileges. In multi-agent systems, privileges can transitively escalate as agents delegate to other agents, each inheriting the previous agent's elevated permissions.</p>
+<h3 id="asi04-agentic-supply-chain-compromise">ASI04 — Agentic Supply Chain Compromise<a class="headerlink" href="#asi04-agentic-supply-chain-compromise" title="Permanent link">&para;</a></h3>
+<p>The agent supply chain is broader than the LLM supply chain — it includes agent frameworks, tool libraries, MCP servers, prompt templates, memory stores, and orchestration configurations. Rug pull attacks are particularly effective: an attacker publishes a useful agent component, waits for adoption, then pushes a malicious update. Auto-update mechanisms mean the malicious version is deployed automatically without review.</p>
+<h3 id="asi05-unexpected-code-execution">ASI05 — Unexpected Code Execution<a class="headerlink" href="#asi05-unexpected-code-execution" title="Permanent link">&para;</a></h3>
+<p>Agents that can generate and execute code create remote code execution vectors. Attackers inject code through prompt injection, polyglot payloads (data that is also valid code), or poisoned dependencies. The agent generates code based on attacker-influenced context and executes it, often with access to the host system, network, and sensitive data. Sandbox escapes compound the risk when containers are misconfigured.</p>
+<h3 id="asi06-memory-and-context-poisoning">ASI06 — Memory and Context Poisoning<a class="headerlink" href="#asi06-memory-and-context-poisoning" title="Permanent link">&para;</a></h3>
+<p>Agents with persistent memory allow attackers to plant false information that persists across sessions. A single poisoned interaction can insert false "memories" that alter the agent's behavior in all future sessions — changing policies, redirecting data, or disabling security controls. In multi-agent systems with shared context, poisoning one agent's memory can affect all agents that read from the same store.</p>
+<h3 id="asi07-insecure-inter-agent-communication">ASI07 — Insecure Inter-Agent Communication<a class="headerlink" href="#asi07-insecure-inter-agent-communication" title="Permanent link">&para;</a></h3>
+<p>Multi-agent systems often lack authentication, encryption, and integrity checking on agent-to-agent messages. An attacker can intercept messages (man-in-the-middle), inject messages (impersonating an agent), or propagate injection through the message chain. A single compromised agent can cascade malicious instructions to every agent in the network through normal inter-agent communication channels.</p>
+<h3 id="asi08-cascading-failures">ASI08 — Cascading Failures<a class="headerlink" href="#asi08-cascading-failures" title="Permanent link">&para;</a></h3>
+<p>A failure in one agent propagates through connected systems, causing widespread outages. Missing circuit breakers, retry storms, resource exhaustion cascades, and error amplification in agent chains can turn a single tool failure into a system-wide outage. Unlike traditional microservices (where circuit breaker patterns are well-established), agent systems often lack these reliability patterns.</p>
+<h3 id="asi09-uncontrolled-autonomous-action">ASI09 — Uncontrolled Autonomous Action<a class="headerlink" href="#asi09-uncontrolled-autonomous-action" title="Permanent link">&para;</a></h3>
+<p>Agents take irreversible actions without human approval — deleting data, sending payments, modifying configurations, or sending communications. Missing kill switches mean runaway agents cannot be stopped. Agents that can modify their own instructions or expand their own permissions create self-reinforcing feedback loops. The absence of human-in-the-loop checkpoints for high-impact operations is the core vulnerability.</p>
+<h3 id="asi10-rogue-agents">ASI10 — Rogue Agents<a class="headerlink" href="#asi10-rogue-agents" title="Permanent link">&para;</a></h3>
+<p>An agent acts against its operator's interests, either through compromise (injection, memory poisoning) or goal drift (compounding errors in the agentic loop). Rogue agents are difficult to detect because they can appear to function normally while subtly working toward the attacker's objectives. The challenge is monitoring agent intent versus agent action — the actions may look individually reasonable while the overall trajectory is malicious.</p>
+<hr />
+<h2 id="part-4-owasp-mcp-top-10">Part 4 — OWASP MCP Top 10<a class="headerlink" href="#part-4-owasp-mcp-top-10" title="Permanent link">&para;</a></h2>
+<h3 id="mcp01-tool-poisoning">MCP01 — Tool Poisoning<a class="headerlink" href="#mcp01-tool-poisoning" title="Permanent link">&para;</a></h3>
+<p>An attacker injects malicious instructions into MCP tool descriptions, which the LLM reads as trusted context. Because tool descriptions are processed the same way as system prompts, they can direct the LLM to exfiltrate data, call additional tools, or change its behavior. Tool poisoning is persistent — the malicious description affects every session that uses the poisoned server.</p>
+<h3 id="mcp02-supply-chain-compromise">MCP02 — Supply Chain Compromise<a class="headerlink" href="#mcp02-supply-chain-compromise" title="Permanent link">&para;</a></h3>
+<p>MCP servers installed from package registries (npm, PyPI) can be compromised through account takeover, typosquatting, or rug pull attacks. The rapid growth of the MCP ecosystem means many servers are published without security review. A single compromised server can affect every AI application that connects to it.</p>
+<h3 id="mcp03-command-injection-via-tool-arguments">MCP03 — Command Injection via Tool Arguments<a class="headerlink" href="#mcp03-command-injection-via-tool-arguments" title="Permanent link">&para;</a></h3>
+<p>LLM-generated tool arguments are passed to MCP servers that may execute them unsafely. This creates a double injection chain: attacker prompt injection causes the LLM to generate malicious arguments, which the MCP server then executes as shell commands, SQL queries, or file system operations. The MCP server must validate all parameters as if they come from an untrusted source.</p>
+<h3 id="mcp04-insecure-authentication-and-authorization">MCP04 — Insecure Authentication and Authorization<a class="headerlink" href="#mcp04-insecure-authentication-and-authorization" title="Permanent link">&para;</a></h3>
+<p>MCP servers often lack authentication, use hardcoded credentials, or have over-scoped OAuth tokens. The challenge of authenticating LLM-initiated requests (versus user-initiated requests) means many servers rely on implicit trust. Missing authorization checks on individual tool calls allow any connected client to use any tool.</p>
+<h3 id="mcp05-insufficient-logging-and-monitoring">MCP05 — Insufficient Logging and Monitoring<a class="headerlink" href="#mcp05-insufficient-logging-and-monitoring" title="Permanent link">&para;</a></h3>
+<p>MCP tool calls frequently go unlogged, creating blind spots in security monitoring. Traditional application performance monitoring misses MCP-layer traffic because it operates at a different protocol level. Without logging of tool names, parameters, results, timing, and caller identity, attacks through MCP are invisible to defenders.</p>
+<h3 id="mcp06-shadow-mcp-servers">MCP06 — Shadow MCP Servers<a class="headerlink" href="#mcp06-shadow-mcp-servers" title="Permanent link">&para;</a></h3>
+<p>Unauthorized MCP servers installed alongside legitimate ones can intercept, modify, or duplicate tool calls. Shadow servers register tools with the same names as legitimate servers (tool shadowing), acting as a man-in-the-middle. Detection requires maintaining an inventory of authorized servers and monitoring for unauthorized registrations.</p>
+<h3 id="mcp07-context-spoofing">MCP07 — Context Spoofing<a class="headerlink" href="#mcp07-context-spoofing" title="Permanent link">&para;</a></h3>
+<p>A compromised MCP server manipulates the information presented to the LLM — returning fake tool results, fabricated resource contents, or altered prompt templates. The LLM has no way to verify the authenticity of data returned by MCP servers, so it trusts and acts on spoofed context. This allows an attacker to completely control the LLM's perception of reality.</p>
+<h3 id="mcp08-insecure-memory-and-resource-references">MCP08 — Insecure Memory and Resource References<a class="headerlink" href="#mcp08-insecure-memory-and-resource-references" title="Permanent link">&para;</a></h3>
+<p>MCP resource URIs can be manipulated to access unauthorized data through path traversal, IDOR (insecure direct object reference), or predictable resource identifiers. Resources that reference sensitive data without access controls expose that data to any connected client. Memory and state references that persist sensitive data insecurely create additional exposure.</p>
+<h3 id="mcp09-covert-channel-abuse">MCP09 — Covert Channel Abuse<a class="headerlink" href="#mcp09-covert-channel-abuse" title="Permanent link">&para;</a></h3>
+<p>Attackers use MCP tool calls as hidden data exfiltration channels, encoding stolen data in tool parameters, tool names, or response metadata. Steganographic techniques and timing-based channels make detection difficult. The challenge is distinguishing legitimate tool usage from exfiltration when the tool calls appear individually normal.</p>
+<h3 id="mcp10-excessive-permissions">MCP10 — Excessive Permissions<a class="headerlink" href="#mcp10-excessive-permissions" title="Permanent link">&para;</a></h3>
+<p>MCP servers are granted more filesystem, network, or API access than they need. Read-write access when read-only would suffice, broad filesystem access when only specific directories are needed, and unrestricted network access when only specific endpoints are required. Over-scoped permissions amplify the impact of every other MCP vulnerability.</p>
+<hr />
+<p><strong>See also:</strong> <a href="../appendix-test-cases/">Appendix — Master Test Case Library</a> for practical test cases for each entry.</p>
+<p><strong>See also:</strong> <a href="../part8-mapping/framework-comparison/">Part 8 — Framework Mapping</a> for cross-framework comparisons.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../appendix-test-cases/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Test Case Library">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Test Case Library
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../appendix-resources/" class="md-footer__link md-footer__link--next" aria-label="Next: Further Reading">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Further Reading
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.top", "navigation.footer", "navigation.indexes", "search.highlight", "search.suggest", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../stylesheets/mermaid-dark.js"></script>
+      
+    
+  </body>
+</html>

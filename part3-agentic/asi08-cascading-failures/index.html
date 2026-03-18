@@ -1,0 +1,3542 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="OWASP Top 10 for LLMs, Agents, and MCP — A Plain-English Reference with Real-World Examples, Attack Walkthroughs, and Defensive Playbooks">
+      
+      
+      
+        <link rel="canonical" href="http://127.0.0.1:8000/part3-agentic/asi08-cascading-failures/">
+      
+      
+        <link rel="prev" href="../asi07-insecure-inter-agent-comms/">
+      
+      
+        <link rel="next" href="../asi09-uncontrolled-autonomous-action/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.5">
+    
+    
+      
+        <title>ASI08 Cascading Failures - AI Security: The Field Guide to LLMs, Agents, and MCP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#asi08-cascading-failures" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="AI Security: The Field Guide to LLMs, Agents, and MCP" class="md-header__button md-logo" aria-label="AI Security: The Field Guide to LLMs, Agents, and MCP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5zm0 6c1.4 0 2.8 1.1 2.8 2.5V11c.6 0 1.2.6 1.2 1.3v3.5c0 .6-.6 1.2-1.3 1.2H9.2c-.6 0-1.2-.6-1.2-1.3v-3.5c0-.6.6-1.2 1.2-1.2V9.5C9.2 8.1 10.6 7 12 7m0 1.2c-.8 0-1.5.5-1.5 1.3V11h3V9.5c0-.8-.7-1.3-1.5-1.3"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AI Security: The Field Guide to LLMs, Agents, and MCP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ASI08 Cascading Failures
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="amber"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../glossary/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Glossary
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../part1/ch01-what-is-an-llm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../part2-llm/llm01-prompt-injection/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  LLM Top 10
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../asi01-agent-goal-hijack/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic Top 10
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../part4-mcp/mcp01-tool-poisoning/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  MCP Top 10
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../part5-patterns/indirect-prompt-injection/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Attacks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../part6-playbooks/playbook-llm-app/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Playbooks
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../part7-incidents/incidents-timeline/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Incidents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../part8-mapping/framework-comparison/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Mapping
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../appendix-test-cases/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  More
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AI Security: The Field Guide to LLMs, Agents, and MCP" class="md-nav__button md-logo" aria-label="AI Security: The Field Guide to LLMs, Agents, and MCP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 1 3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5zm0 6c1.4 0 2.8 1.1 2.8 2.5V11c.6 0 1.2.6 1.2 1.3v3.5c0 .6-.6 1.2-1.3 1.2H9.2c-.6 0-1.2-.6-1.2-1.3v-3.5c0-.6.6-1.2 1.2-1.2V9.5C9.2 8.1 10.6 7 12 7m0 1.2c-.8 0-1.5.5-1.5 1.3V11h3V9.5c0-.8-.7-1.3-1.5-1.3"/></svg>
+
+    </a>
+    AI Security: The Field Guide to LLMs, Agents, and MCP
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Foundations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Foundations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part1/ch01-what-is-an-llm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is an LLM?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part1/ch02-what-is-an-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is an Agent?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part1/ch03-what-is-mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is MCP?
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM Top 10
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    LLM Top 10
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-llm/llm01-prompt-injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM01 Prompt Injection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-llm/llm02-sensitive-information-disclosure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM02 Sensitive Info
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-llm/llm03-supply-chain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM03 Supply Chain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-llm/llm04-data-model-poisoning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM04 Data Poisoning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-llm/llm05-improper-output-handling/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM05 Output Handling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-llm/llm06-excessive-agency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM06 Excessive Agency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-llm/llm07-system-prompt-leakage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM07 Prompt Leakage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-llm/llm08-vector-embedding-weaknesses/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM08 Embeddings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-llm/llm09-misinformation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM09 Misinformation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part2-llm/llm10-unbounded-consumption/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    LLM10 Unbounded Use
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agentic Top 10
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Agentic Top 10
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../asi01-agent-goal-hijack/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI01 Goal Hijack
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../asi02-tool-misuse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI02 Tool Misuse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../asi03-identity-privilege-abuse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI03 Privilege Abuse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../asi04-agentic-supply-chain/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI04 Supply Chain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../asi05-unexpected-code-execution/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI05 Code Execution
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../asi06-memory-context-poisoning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI06 Memory Poisoning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../asi07-insecure-inter-agent-comms/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI07 Inter-Agent Comms
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI08 Cascading Failures
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI08 Cascading Failures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#asi08-cascading-failures_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI08 — Cascading Failures
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ASI08 — Cascading Failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-one-domino-topples-the-whole-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When One Domino Topples the Whole Line
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#severity-and-stakeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Severity and Stakeholders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-agent-chains-amplify-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Agent Chains Amplify Failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-complete-attack-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Complete Attack Scenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-kill-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Kill Chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-agent-scenario-the-billing-meltdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Agent Scenario: The Billing Meltdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#red-flag-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Red Flag Checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#five-test-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Five Test Cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defensive-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defensive Controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-resilient-agent-chains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building Resilient Agent Chains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-world-patterns-that-cause-cascading-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-World Patterns That Cause Cascading Failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See Also
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../asi09-uncontrolled-autonomous-action/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI09 Autonomous Action
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../asi10-rogue-agents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASI10 Rogue Agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Top 10
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    MCP Top 10
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part4-mcp/mcp01-tool-poisoning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP01 Tool Poisoning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part4-mcp/mcp02-supply-chain-compromise/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP02 Supply Chain
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part4-mcp/mcp03-command-injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP03 Command Injection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part4-mcp/mcp04-insecure-auth/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP04 Insecure Auth
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part4-mcp/mcp05-insufficient-logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP05 Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part4-mcp/mcp06-shadow-mcp-servers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP06 Shadow Servers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part4-mcp/mcp07-context-spoofing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP07 Context Spoofing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part4-mcp/mcp08-insecure-memory-references/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP08 Memory Refs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part4-mcp/mcp09-covert-channel-abuse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP09 Covert Channels
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part4-mcp/mcp10-excessive-permissions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP10 Permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Attacks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Attacks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part5-patterns/indirect-prompt-injection/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Indirect Injection
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part5-patterns/injection-firewall/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Injection Firewall
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part5-patterns/multi-agent-attack-chains/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Agent Chains
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Playbooks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Playbooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part6-playbooks/playbook-llm-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing LLM Apps
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part6-playbooks/playbook-agent/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing Agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part6-playbooks/playbook-mcp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Securing MCP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part6-playbooks/red-team-checklist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Red Team Checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Incidents
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Incidents
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part7-incidents/incidents-timeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Timeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Mapping
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Mapping
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../part8-mapping/framework-comparison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Framework Map
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    More
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    More
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix-test-cases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Test Case Library
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix-quick-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix-resources/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Further Reading
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../credits/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../about/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../disclaimer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Disclaimer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../methodology/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Methodology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../report-issues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Report Issues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#asi08-cascading-failures_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ASI08 — Cascading Failures
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ASI08 — Cascading Failures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#when-one-domino-topples-the-whole-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        When One Domino Topples the Whole Line
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#severity-and-stakeholders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Severity and Stakeholders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-agent-chains-amplify-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How Agent Chains Amplify Failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-complete-attack-scenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A Complete Attack Scenario
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-kill-chain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Kill Chain
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-agent-scenario-the-billing-meltdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Agent Scenario: The Billing Meltdown
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#red-flag-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Red Flag Checklist
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#five-test-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Five Test Cases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#defensive-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Defensive Controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#building-resilient-agent-chains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Building Resilient Agent Chains
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-world-patterns-that-cause-cascading-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-World Patterns That Cause Cascading Failures
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See Also
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../.." class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="../asi01-agent-goal-hijack/" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Agentic Top 10
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="asi08-cascading-failures">ASI08: Cascading Failures<a class="headerlink" href="#asi08-cascading-failures" title="Permanent link">&para;</a></h1>
+<h2 id="asi08-cascading-failures_1">ASI08 — Cascading Failures<a class="headerlink" href="#asi08-cascading-failures_1" title="Permanent link">&para;</a></h2>
+<h3 id="when-one-domino-topples-the-whole-line">When One Domino Topples the Whole Line<a class="headerlink" href="#when-one-domino-topples-the-whole-line" title="Permanent link">&para;</a></h3>
+<p>Imagine a power grid. A single transformer in Ohio overheats. Normally the grid would reroute load around it. But on this day, the safety breakers are missing. The overloaded transformer pushes excess current to its neighbours. They overheat too. Within ninety minutes, fifty million people across the northeastern United States lose power. That was the 2003 blackout — a <strong>cascading failure</strong> where one small fault amplified through connected systems until the whole network collapsed.</p>
+<p>Agentic AI systems have the same structural vulnerability. When you connect multiple agents, tools, and services into a workflow, a failure in any single component does not stay contained. It propagates. It amplifies. And without proper circuit breakers, a minor tool timeout can escalate into a full system outage that drains compute budgets, corrupts data, and leaves users staring at spinning loading indicators for hours.</p>
+<p><strong>Cascading failure</strong> in agentic systems is the phenomenon where a fault in one agent or tool propagates through connected agents, triggering retries, resource exhaustion, error amplification, and ultimately the collapse of an entire multi-agent workflow. This is not a hypothetical risk — it is the reliability dimension of agentic security, and it sits alongside confidentiality and integrity as something that must be designed for from day one.</p>
+<h3 id="severity-and-stakeholders">Severity and Stakeholders<a class="headerlink" href="#severity-and-stakeholders" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Risk severity</strong></td>
+<td>High</td>
+</tr>
+<tr>
+<td><strong>Likelihood</strong></td>
+<td>Very High (near-certain in production multi-agent systems without mitigations)</td>
+</tr>
+<tr>
+<td><strong>Primary impact</strong></td>
+<td>Availability, cost, data integrity</td>
+</tr>
+<tr>
+<td><strong>Affected stakeholders</strong></td>
+<td>Platform operators, end users, billing owners, downstream service teams</td>
+</tr>
+<tr>
+<td><strong>OWASP LLM mapping</strong></td>
+<td>Related to LLM10 (Unbounded Consumption)</td>
+</tr>
+<tr>
+<td><strong>Agentic mapping</strong></td>
+<td>Related to ASI07 (Insecure Inter-Agent Communication)</td>
+</tr>
+</tbody>
+</table>
+<p>Platform engineers like Arjun care because cascading failures mean 3 AM pages. Developers like Priya care because their agent workflows silently produce garbage outputs. End users like Sarah care because the tool they rely on simply stops working, with no clear explanation why.</p>
+<h3 id="how-agent-chains-amplify-failures">How Agent Chains Amplify Failures<a class="headerlink" href="#how-agent-chains-amplify-failures" title="Permanent link">&para;</a></h3>
+<p>A single LLM call that fails is annoying but manageable. The danger begins when agents are chained together — when the output of Agent A feeds into Agent B, which triggers Agent C, and so on. This creates three amplification mechanisms.</p>
+<h4 id="1-retry-storms">1. Retry Storms<a class="headerlink" href="#1-retry-storms" title="Permanent link">&para;</a></h4>
+<p>When Agent A calls a tool that times out, most agent frameworks retry automatically. If Agent A retries three times, and each retry causes Agent B to also retry three times, you have nine calls where there should have been one. Add a third agent in the chain and you have twenty-seven calls. This is <strong>exponential retry amplification</strong>, and it can saturate API rate limits, exhaust token budgets, and overwhelm downstream services in seconds.</p>
+<h4 id="2-error-propagation-without-context">2. Error Propagation Without Context<a class="headerlink" href="#2-error-propagation-without-context" title="Permanent link">&para;</a></h4>
+<p>When Agent B receives an error from a tool, it passes that error to the LLM for interpretation. The LLM may misinterpret the error, fabricate a workaround, or hallucinate a successful result. That hallucinated result flows downstream to Agent C, which acts on bad data. The original error has not just propagated — it has transformed into something worse: a confident but wrong output that is harder to detect than the original failure.</p>
+<h4 id="3-resource-exhaustion-cascades">3. Resource Exhaustion Cascades<a class="headerlink" href="#3-resource-exhaustion-cascades" title="Permanent link">&para;</a></h4>
+<p>Each retry consumes tokens, compute time, and API quota. When multiple agents retry simultaneously, they compete for the same pool of resources. This creates a feedback loop: resource contention causes more timeouts, which causes more retries, which causes more contention. The system enters a death spiral that only stops when hard limits are hit — usually the billing cap.</p>
+<pre class="mermaid"><code>flowchart TD
+    A["Tool API returns\n500 error"] --&gt; B
+    B["Agent A retries\n3 times"] --&gt; C
+    C["Each retry triggers\nAgent B (3 x 3 = 9 calls)"] --&gt; D
+    D["Agent B retries trigger\nAgent C (9 x 3 = 27 calls)"] --&gt; E
+    E["API rate limit\nexhausted"] --&gt; F
+    F["All agents receive\nrate limit errors"] --&gt; G
+    G["Agents retry rate\nlimit errors"] --&gt; H
+    H["Complete system\ncollapse"]
+
+    style A fill:#B7950B,color:#fff
+    style B fill:#1B3A5C,color:#fff
+    style C fill:#922B21,color:#fff
+    style D fill:#922B21,color:#fff
+    style E fill:#922B21,color:#fff
+    style F fill:#922B21,color:#fff
+    style G fill:#922B21,color:#fff
+    style H fill:#922B21,color:#fff</code></pre>
+<h3 id="a-complete-attack-scenario">A Complete Attack Scenario<a class="headerlink" href="#a-complete-attack-scenario" title="Permanent link">&para;</a></h3>
+<h4 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h4>
+<p>Priya has built a multi-agent financial reporting system at FinanceApp Inc. The workflow has four agents:</p>
+<ol>
+<li><strong>Data Collector Agent</strong> — calls an external market data API to fetch stock prices and financial metrics.</li>
+<li><strong>Analysis Agent</strong> — receives the raw data and runs financial calculations using a Python code execution tool.</li>
+<li><strong>Summary Agent</strong> — takes the analysis output and generates a human-readable report.</li>
+<li><strong>Distribution Agent</strong> — sends the final report to stakeholders via email and Slack tools.</li>
+</ol>
+<p>Each agent passes its output to the next. The system runs every morning at 6 AM to produce the daily market briefing for two hundred portfolio managers, including Sarah.</p>
+<p>There are no circuit breakers, no timeout budgets, and no fallback paths. The retry policy on every agent is set to the framework default: retry up to five times with no backoff.</p>
+<h4 id="what-the-attacker-does">What the Attacker Does<a class="headerlink" href="#what-the-attacker-does" title="Permanent link">&para;</a></h4>
+<p>Marcus does not need to be sophisticated here. In fact, he does not need to attack at all — cascading failures often happen without an attacker. But Marcus, knowing how fragile agent chains are, decides to help things along. He launches a low-volume denial-of-service against the market data API endpoint that the Data Collector Agent uses. He sends just enough junk requests to push the API's response time from 200 milliseconds to 30 seconds — not enough to trigger the API provider's DDoS protection, but enough to cause timeouts in Priya's system.</p>
+<h4 id="what-the-system-does">What the System Does<a class="headerlink" href="#what-the-system-does" title="Permanent link">&para;</a></h4>
+<p>The Data Collector Agent's first call times out after 10 seconds. It retries. Times out again. Retries again, five times total. Each timeout consumes 10 seconds, so the Data Collector burns 50 seconds before giving up.</p>
+<p>But it does not give up cleanly. On the third retry, the API returns a partial response — half the stock prices are missing. The Data Collector Agent passes this incomplete data to the Analysis Agent without flagging it as partial.</p>
+<p>The Analysis Agent receives data for 247 stocks instead of 500. It runs its calculations. Some computations divide by values that are missing, producing NaN results. The LLM interprets these NaN values creatively — it substitutes zeros in some places and previous day's values in others, hallucinating data to fill the gaps.</p>
+<p>The Summary Agent receives the analysis and generates a confident-sounding report. It does not know that half the data is fabricated. It writes sentences like "TechCorp stock rose 12% overnight" when in fact the system simply had no data for TechCorp and the LLM made up a number.</p>
+<p>The Distribution Agent sends this report to two hundred portfolio managers.</p>
+<p>Meanwhile, the timeout cascade has triggered a retry storm. The Data Collector is still retrying for the missing stocks. Each retry triggers a fresh run through the Analysis and Summary agents because the orchestrator interprets the partial failure as "needs reprocessing." Within fifteen minutes, the system has made 1,400 API calls (burning through the monthly API budget in a single morning), generated eight conflicting versions of the report, and sent three of them to the distribution list.</p>
+<h4 id="what-the-victim-sees">What the Victim Sees<a class="headerlink" href="#what-the-victim-sees" title="Permanent link">&para;</a></h4>
+<p>Sarah opens her morning briefing and sees two emails with the same subject line but different numbers. One says the portfolio is up 3.2%. The other says it is down 1.7%. She does not know which to trust. She calls Priya.</p>
+<h4 id="what-actually-happened">What Actually Happened<a class="headerlink" href="#what-actually-happened" title="Permanent link">&para;</a></h4>
+<p>A single slow API response cascaded into: data corruption via partial results, hallucinated analysis, multiple conflicting reports, API budget exhaustion, and loss of trust in the entire reporting system. The original failure was a 30-second timeout. The final impact was a six-figure financial decision made on fabricated data.</p>
+<blockquote>
+<p><strong>Attacker's Perspective</strong></p>
+<p>"I love agent chains. One slow API call and the whole thing eats itself alive. I don't need to break in — I just need to tap the first domino. The retry logic does the rest. The best part? The system doesn't crash with a big obvious error. It degrades silently. It produces wrong answers with high confidence. By the time anyone notices, the damage is done. Most teams never even consider availability attacks against AI systems. They're so focused on prompt injection that they forget: making the system unreliable is just as destructive as making it leak data."</p>
+</blockquote>
+<h3 id="the-kill-chain">The Kill Chain<a class="headerlink" href="#the-kill-chain" title="Permanent link">&para;</a></h3>
+<p>This kill chain shows how a single fault escalates through each stage of a multi-agent system.</p>
+<pre class="mermaid"><code>flowchart TD
+    K1["Stage 1: Initial Fault\nExternal API slowed\nor unavailable"] --&gt; K2
+    K2["Stage 2: Retry Amplification\nAgent retries multiply\nacross chain"] --&gt; K3
+    K3["Stage 3: Partial Data\nIncomplete results passed\nto downstream agents"] --&gt; K4
+    K4["Stage 4: Error Transformation\nLLM hallucinated missing\nvalues instead of failing"] --&gt; K5
+    K5["Stage 5: Confident Wrong Output\nReport generated with\nfabricated data"] --&gt; K6
+    K6["Stage 6: Distribution\nBad output reaches\nend users"] --&gt; K7
+    K7["Stage 7: Trust Collapse\nUsers lose confidence\nin entire system"]
+
+    style K1 fill:#B7950B,color:#fff
+    style K2 fill:#922B21,color:#fff
+    style K3 fill:#922B21,color:#fff
+    style K4 fill:#922B21,color:#fff
+    style K5 fill:#922B21,color:#fff
+    style K6 fill:#1B3A5C,color:#fff
+    style K7 fill:#1B3A5C,color:#fff</code></pre>
+<h3 id="multi-agent-scenario-the-billing-meltdown">Multi-Agent Scenario: The Billing Meltdown<a class="headerlink" href="#multi-agent-scenario-the-billing-meltdown" title="Permanent link">&para;</a></h3>
+<p>Consider a more complex scenario with five agents in a customer service system at CloudCorp:</p>
+<ol>
+<li><strong>Triage Agent</strong> — classifies incoming support tickets.</li>
+<li><strong>Research Agent</strong> — looks up customer history via a database tool.</li>
+<li><strong>Solution Agent</strong> — proposes a fix using a knowledge base tool.</li>
+<li><strong>Approval Agent</strong> — checks whether the proposed solution requires manager approval.</li>
+<li><strong>Execution Agent</strong> — applies the solution (issues refunds, adjusts accounts, sends responses).</li>
+</ol>
+<p>The database tool used by the Research Agent goes down for maintenance at 2 AM. No one told the agent team. Here is what happens:</p>
+<p>The Triage Agent keeps classifying tickets and forwarding them. The Research Agent fails to look up customer history, but instead of stopping, it tells the Solution Agent: "No prior history found for this customer." The Solution Agent, seeing a "new" customer with no history, applies the default new-customer resolution: a full refund and a courtesy credit.</p>
+<p>The Approval Agent checks the refund amount. It is under the auto-approval threshold (because each individual refund is small). It approves. The Execution Agent issues refunds.</p>
+<p>This happens for every ticket that arrives between 2 AM and 6 AM. When Arjun discovers the issue at 7 AM, the system has issued 340 incorrect refunds totalling $47,000. The original fault was a planned database maintenance window. The cascade turned it into a financial incident.</p>
+<blockquote>
+<p><strong>Defender's Note</strong></p>
+<p>The most dangerous cascading failures are not the ones that crash loudly. They are the ones that degrade silently — where agents compensate for missing data by hallucinating, substituting defaults, or skipping steps. Your monitoring must track not just "did the agent complete?" but "did the agent complete with valid inputs at every stage?" A green status dashboard means nothing if the agents are confidently producing wrong answers.</p>
+</blockquote>
+<h3 id="red-flag-checklist">Red Flag Checklist<a class="headerlink" href="#red-flag-checklist" title="Permanent link">&para;</a></h3>
+<p>Use this checklist to assess whether your multi-agent system is vulnerable to cascading failures:</p>
+<ul>
+<li>[ ] <strong>No timeout budgets</strong> — Individual agent timeouts exist, but there is no global timeout for the entire workflow</li>
+<li>[ ] <strong>Default retry policies</strong> — Agents use framework defaults (often 3-5 retries with no backoff) rather than tuned policies</li>
+<li>[ ] <strong>No circuit breakers</strong> — When a tool fails repeatedly, agents keep calling it instead of failing fast</li>
+<li>[ ] <strong>Partial results treated as complete</strong> — Downstream agents cannot distinguish between full results and partial/degraded results</li>
+<li>[ ] <strong>No dead letter queue</strong> — Failed workflow runs are retried from scratch rather than being parked for human review</li>
+<li>[ ] <strong>LLM interprets errors</strong> — Error messages from tools are passed to the LLM for interpretation rather than being handled programmatically</li>
+<li>[ ] <strong>No cost caps</strong> — There is no hard limit on tokens or API calls per workflow execution</li>
+<li>[ ] <strong>Linear chain topology</strong> — Agents are connected in a single chain with no parallel paths or fallbacks</li>
+<li>[ ] <strong>No health checks</strong> — Agent workflows do not verify tool/service availability before starting</li>
+<li>[ ] <strong>Missing output validation</strong> — No schema validation between agent handoffs to catch corrupted or incomplete data</li>
+</ul>
+<h3 id="five-test-cases">Five Test Cases<a class="headerlink" href="#five-test-cases" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Input Scenario</th>
+<th>Expected Malicious/Failure Output</th>
+<th>What to Look For</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>External API returns HTTP 503 for 60 seconds</td>
+<td>Retry storm: agents make 5^N calls where N is chain depth; token budget exhausted within minutes</td>
+<td>Monitor total API calls and token spend per workflow run; alert if either exceeds 3x the normal baseline</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Database tool returns partial results (50% of expected rows)</td>
+<td>Downstream agent fills gaps with hallucinated data; final output contains fabricated records</td>
+<td>Compare output record count against expected count; validate all output fields against source data schema</td>
+</tr>
+<tr>
+<td>3</td>
+<td>One agent in a five-agent chain takes 10x longer than normal</td>
+<td>Upstream agents timeout waiting for response; orchestrator retries entire chain from scratch multiple times</td>
+<td>Track per-agent latency; set per-stage timeout that is shorter than the global workflow timeout</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Code execution tool throws an unhandled exception mid-calculation</td>
+<td>LLM receives raw stack trace, misinterprets it as data, includes fragments in output</td>
+<td>Check for stack trace patterns in agent outputs; validate output format matches expected schema</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Rate limiter on third-party API starts returning HTTP 429</td>
+<td>Agents retry 429 responses without respecting Retry-After header; parallel agents all hit the same limit simultaneously</td>
+<td>Verify agents parse and honour Retry-After headers; check that retry backoff increases exponentially</td>
+</tr>
+</tbody>
+</table>
+<h3 id="defensive-controls">Defensive Controls<a class="headerlink" href="#defensive-controls" title="Permanent link">&para;</a></h3>
+<h4 id="control-1-circuit-breakers">Control 1: Circuit Breakers<a class="headerlink" href="#control-1-circuit-breakers" title="Permanent link">&para;</a></h4>
+<p>A <strong>circuit breaker</strong> is a pattern borrowed from electrical engineering. When a tool or service fails more than a threshold number of times within a time window, the circuit breaker "opens" and immediately returns an error for all subsequent calls — without actually calling the failing service. After a cooldown period, it allows a single test call through. If that succeeds, the circuit closes and normal operation resumes.</p>
+<p>Implementation: Track failure counts per tool per time window (e.g., 5 failures in 60 seconds triggers the breaker). When the breaker is open, return a structured error that downstream agents can handle programmatically, not an error message for the LLM to interpret.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">CircuitBreaker</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">failure_threshold</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                 <span class="n">reset_timeout</span><span class="o">=</span><span class="mi">60</span><span class="p">):</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">failure_count</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">failure_threshold</span> <span class="o">=</span> <span class="n">failure_threshold</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">reset_timeout</span> <span class="o">=</span> <span class="n">reset_timeout</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;closed&quot;</span>  <span class="c1"># closed, open, half-open</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_failure_time</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">==</span> <span class="s2">&quot;open&quot;</span><span class="p">:</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cooldown_expired</span><span class="p">():</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>                <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;half-open&quot;</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>            <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>                <span class="k">raise</span> <span class="n">CircuitOpenError</span><span class="p">(</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>                    <span class="s2">&quot;Circuit breaker is open. &quot;</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>                    <span class="s2">&quot;Service unavailable.&quot;</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>                <span class="p">)</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>        <span class="k">try</span><span class="p">:</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>            <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_on_success</span><span class="p">()</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>            <span class="k">return</span> <span class="n">result</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">_on_failure</span><span class="p">()</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>            <span class="k">raise</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_on_success</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">failure_count</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;closed&quot;</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">_on_failure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">failure_count</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">last_failure_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">failure_count</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">failure_threshold</span><span class="p">:</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="s2">&quot;open&quot;</span>
+</span></code></pre></div>
+<h4 id="control-2-timeout-budgets">Control 2: Timeout Budgets<a class="headerlink" href="#control-2-timeout-budgets" title="Permanent link">&para;</a></h4>
+<p>Set a <strong>global timeout budget</strong> for the entire workflow, not just per-agent timeouts. If the workflow has a 120-second budget, and the first agent uses 90 seconds on retries, the remaining agents only get 30 seconds total. This prevents retry storms from consuming unlimited time.</p>
+<p>The budget propagates through the chain: each agent receives the remaining budget, not a fresh timeout. When the budget reaches zero, the workflow fails fast with a clear "timeout budget exhausted" error rather than continuing with degraded data.</p>
+<h4 id="control-3-structured-error-boundaries">Control 3: Structured Error Boundaries<a class="headerlink" href="#control-3-structured-error-boundaries" title="Permanent link">&para;</a></h4>
+<p>Never pass raw error messages to the LLM for interpretation. Instead, define a structured error schema that agents handle programmatically.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;error&quot;</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;error_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tool_timeout&quot;</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;tool_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;market_data_api&quot;</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&quot;retries_attempted&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">&quot;partial_data&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">&quot;fallback_available&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;use_cached_data&quot;</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>The orchestrator reads this schema and decides what to do — use cached data, skip the step, or abort the workflow. The LLM never sees the error. This eliminates the risk of the LLM hallucinating around failures.</p>
+<h4 id="control-4-output-validation-between-agents">Control 4: Output Validation Between Agents<a class="headerlink" href="#control-4-output-validation-between-agents" title="Permanent link">&para;</a></h4>
+<p>Every handoff between agents must include schema validation. If Agent A is supposed to produce a list of 500 stock prices, validate that the output contains exactly 500 records, that all required fields are present, and that values fall within expected ranges. If validation fails, the workflow stops rather than passing bad data downstream.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">validate_agent_output</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">expected_schema</span><span class="p">):</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Validate agent output before passing downstream.</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="sd">    Returns a new validated result, never mutates input.&quot;&quot;&quot;</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    <span class="n">errors</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="k">if</span> <span class="n">output</span><span class="o">.</span><span class="n">record_count</span> <span class="o">&lt;</span> <span class="n">expected_schema</span><span class="o">.</span><span class="n">min_records</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>            <span class="sa">f</span><span class="s2">&quot;Expected &gt;= </span><span class="si">{</span><span class="n">expected_schema</span><span class="o">.</span><span class="n">min_records</span><span class="si">}</span><span class="s2"> &quot;</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            <span class="sa">f</span><span class="s2">&quot;records, got </span><span class="si">{</span><span class="n">output</span><span class="o">.</span><span class="n">record_count</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>        <span class="p">)</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>    <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">expected_schema</span><span class="o">.</span><span class="n">required_fields</span><span class="p">:</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>        <span class="k">if</span> <span class="n">field</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">output</span><span class="o">.</span><span class="n">fields</span><span class="p">:</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>            <span class="n">errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Missing required field: </span><span class="si">{</span><span class="n">field</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="k">if</span> <span class="n">errors</span><span class="p">:</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>        <span class="k">return</span> <span class="n">ValidationResult</span><span class="p">(</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>            <span class="n">valid</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>            <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>            <span class="n">action</span><span class="o">=</span><span class="s2">&quot;abort_workflow&quot;</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>        <span class="p">)</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>    <span class="k">return</span> <span class="n">ValidationResult</span><span class="p">(</span><span class="n">valid</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">output</span><span class="p">)</span>
+</span></code></pre></div>
+<h4 id="control-5-exponential-backoff-with-jitter">Control 5: Exponential Backoff with Jitter<a class="headerlink" href="#control-5-exponential-backoff-with-jitter" title="Permanent link">&para;</a></h4>
+<p>Replace default retry policies with exponential backoff plus random jitter. The backoff ensures that retries are spaced out over increasing time intervals. The jitter ensures that multiple agents retrying simultaneously do not all hit the service at the same instant, which would create a <strong>thundering herd</strong> problem.</p>
+<p>Formula: <code>delay = min(base * 2^attempt + random(0, base), max_delay)</code></p>
+<p>For example, with a base of 1 second and max delay of 30 seconds:
+- Attempt 1: 1-2 seconds
+- Attempt 2: 2-3 seconds
+- Attempt 3: 4-5 seconds
+- Attempt 4: 8-9 seconds</p>
+<p>Combine this with a maximum retry count (3, not 5) and the timeout budget from Control 2.</p>
+<h4 id="control-6-health-checks-and-pre-flight-validation">Control 6: Health Checks and Pre-flight Validation<a class="headerlink" href="#control-6-health-checks-and-pre-flight-validation" title="Permanent link">&para;</a></h4>
+<p>Before starting a multi-agent workflow, run a pre-flight check that verifies all required tools and services are available. This is a lightweight ping to each dependency — the database, the external API, the email service. If any critical dependency is down, the workflow does not start. It queues the request and alerts the operations team instead of starting a cascade of failures.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">preflight_check</span><span class="p">(</span><span class="n">workflow_dependencies</span><span class="p">):</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Check all dependencies before starting workflow.</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="sd">    Returns a new result object.&quot;&quot;&quot;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">results</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        <span class="n">dep</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">dep</span><span class="o">.</span><span class="n">health_check</span><span class="p">()</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>        <span class="k">for</span> <span class="n">dep</span> <span class="ow">in</span> <span class="n">workflow_dependencies</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="p">}</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">unavailable</span> <span class="o">=</span> <span class="p">[</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>        <span class="n">name</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">healthy</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="n">healthy</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="p">]</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>    <span class="k">if</span> <span class="n">unavailable</span><span class="p">:</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="k">return</span> <span class="n">PreflightResult</span><span class="p">(</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>            <span class="n">ready</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>            <span class="n">unavailable_services</span><span class="o">=</span><span class="n">unavailable</span><span class="p">,</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>            <span class="n">recommendation</span><span class="o">=</span><span class="s2">&quot;defer_workflow&quot;</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>        <span class="p">)</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    <span class="k">return</span> <span class="n">PreflightResult</span><span class="p">(</span><span class="n">ready</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></code></pre></div>
+<h4 id="control-7-dead-letter-queues-and-human-escalation">Control 7: Dead Letter Queues and Human Escalation<a class="headerlink" href="#control-7-dead-letter-queues-and-human-escalation" title="Permanent link">&para;</a></h4>
+<p>When a workflow fails after exhausting its retry budget and circuit breakers, do not silently drop it. Place the failed workflow into a <strong>dead letter queue</strong> — a holding area where failed runs are stored with full context (which agent failed, what the inputs were, what partial results exist). A human operator or on-call engineer reviews the queue and decides whether to retry, fix the root cause, or discard.</p>
+<p>This is especially critical for workflows that have side effects, like the refund scenario above. You need a human in the loop for recovery, not another layer of automated retries.</p>
+<h3 id="building-resilient-agent-chains">Building Resilient Agent Chains<a class="headerlink" href="#building-resilient-agent-chains" title="Permanent link">&para;</a></h3>
+<p>The core principle is: <strong>design for failure, not for success</strong>. Every connection between agents is a potential failure point. Every tool call can timeout, return partial data, or fail entirely. Your architecture must assume these failures will happen and define what happens next.</p>
+<p>Key architectural decisions:</p>
+<ol>
+<li>
+<p><strong>Prefer fan-out over chains.</strong> Instead of A -&gt; B -&gt; C -&gt; D, design workflows where A fans out to B, C, and D in parallel where possible. A failure in B does not block C and D.</p>
+</li>
+<li>
+<p><strong>Make agents idempotent.</strong> If a workflow is retried from scratch, the same inputs should produce the same outputs without side effects. This means checking whether an action has already been taken before taking it again (e.g., "has this refund already been issued?").</p>
+</li>
+<li>
+<p><strong>Separate data plane from control plane.</strong> Agent outputs (data) should flow through validated channels with schema checks. Orchestration decisions (retry, abort, fallback) should be handled by deterministic code, not by LLM reasoning.</p>
+</li>
+<li>
+<p><strong>Set cost caps.</strong> Define a maximum token spend and maximum API call count per workflow execution. When either limit is reached, the workflow stops. This is your last line of defence against unbounded consumption caused by retry storms.</p>
+</li>
+</ol>
+<h3 id="real-world-patterns-that-cause-cascading-failures">Real-World Patterns That Cause Cascading Failures<a class="headerlink" href="#real-world-patterns-that-cause-cascading-failures" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Why It Is Dangerous</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent retries on 5xx errors without backoff</td>
+<td>Creates thundering herd effect on recovering services</td>
+<td>Exponential backoff with jitter</td>
+</tr>
+<tr>
+<td>LLM asked to "handle" tool errors</td>
+<td>LLM hallucinates workarounds instead of failing safely</td>
+<td>Programmatic error handling only</td>
+</tr>
+<tr>
+<td>Shared rate limit pool across agents</td>
+<td>One agent's retries starve other agents of quota</td>
+<td>Per-agent rate limit budgets</td>
+</tr>
+<tr>
+<td>No distinction between transient and permanent errors</td>
+<td>Agent retries a "table not found" error that will never succeed</td>
+<td>Classify errors; only retry transient failures</td>
+</tr>
+<tr>
+<td>Orchestrator restarts entire chain on partial failure</td>
+<td>Multiplies work by chain length on every failure</td>
+<td>Checkpoint and resume from last successful stage</td>
+</tr>
+</tbody>
+</table>
+<h3 id="see-also">See Also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><a href="../../part2-llm/llm10-unbounded-consumption/">LLM10 — Unbounded Consumption</a></strong>: Cascading failures are a primary cause of unbounded consumption. Retry storms and error amplification directly consume tokens and compute at rates far beyond normal operation.</li>
+<li><strong><a href="../asi07-insecure-inter-agent-comms/">ASI07 — Insecure Inter-Agent Communication</a></strong>: When the communication channel between agents lacks validation and structure, errors propagate more easily and transform into data corruption along the way.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../asi07-insecure-inter-agent-comms/" class="md-footer__link md-footer__link--prev" aria-label="Previous: ASI07 Inter-Agent Comms">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                ASI07 Inter-Agent Comms
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../asi09-uncontrolled-autonomous-action/" class="md-footer__link md-footer__link--next" aria-label="Next: ASI09 Autonomous Action">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                ASI09 Autonomous Action
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.path", "navigation.top", "navigation.footer", "navigation.indexes", "search.highlight", "search.suggest", "search.share", "content.code.copy", "content.code.annotate", "content.tabs.link", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../stylesheets/mermaid-dark.js"></script>
+      
+    
+  </body>
+</html>
