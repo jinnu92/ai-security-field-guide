@@ -1,50 +1,45 @@
 # AI Security: The Field Guide to LLMs, Agents, and MCP
 
-**OWASP Top 10 for LLMs, Agents, and MCP** — A Plain-English Reference with Real-World Examples, Attack Walkthroughs, and Defensive Playbooks.
+A plain-English reference for the OWASP Top 10 risks across Large Language Models, AI agents, and the Model Context Protocol, with real-world examples, attack walkthroughs, and defensive playbooks.
 
-## Overview
+Read it online: https://jinnu92.github.io/ai-security-field-guide/
 
-This guide provides a comprehensive look at the security landscape for Large Language Models (LLMs), AI Agents, and the Model Context Protocol (MCP).
+## Scope
 
-## How to View the Book
+The guide covers the security landscape for LLM applications, autonomous and tool-using agents, and MCP servers and clients. Each risk is presented three ways: what the weakness is in plain language, how it is exploited in practice, and which controls actually mitigate it.
 
-### Option 1: Live Website (Recommended)
-You can view the interactive version of this book at:
-[https://jinnu92.github.io/ai-security-field-guide/](https://jinnu92.github.io/ai-security-field-guide/) (Replace with your GitHub username once deployed)
+## Contents
 
-### Option 2: Local Development
-To run the book locally:
+- Part 1: Foundations of AI and LLM security
+- Parts 2-6: OWASP Top 10 for LLMs, Agents, and MCP, one risk per chapter
+- Parts 7-8: Defensive playbooks and testing methodology
 
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/your-username/ai-security-book.git
-   cd ai-security-book
-   ```
+## Running the book locally
 
-2. Create and activate a virtual environment:
-   ```bash
-   python3 -m venv .venv
-   source .venv/bin/activate
-   ```
+The book is built with MkDocs. Clone the repository and start a local server:
 
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-   *(Note: You may need to create a requirements.txt file if it doesn't exist)*
+```bash
+git clone https://github.com/jinnu92/ai-security-field-guide.git
+cd ai-security-field-guide
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+mkdocs serve
+```
 
-4. Start the MkDocs server:
-   ```bash
-   mkdocs serve
-   ```
-5. Open `http://127.0.0.1:8000/` in your browser.
+The site is then served at http://127.0.0.1:8000/.
 
-## Project Structure
+## Repository layout
 
-- `docs/`: Contains the Markdown source files for the book.
-- `mkdocs.yml`: Configuration for the MkDocs site and theme.
-- `part1-8`: Organized chapters covering Foundations, OWASP Top 10s, and Playbooks.
+- `docs/` - Markdown source for every chapter
+- `book/` - assembled book output
+- `scripts/` - build and validation helpers
+- `mkdocs.yml` - site and theme configuration
+
+## Contributing
+
+Corrections, new attack walkthroughs, and additional references are welcome. See CONTRIBUTING.md before opening a pull request.
 
 ## License
 
-This work is licensed under [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/).
+Code and scripts in this repository are released under the MIT License (see LICENSE). The written content of the guide is licensed under Creative Commons Attribution 4.0 International.
